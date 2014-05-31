@@ -7,7 +7,7 @@ use Test::More;
 
 
 # Load Test::Dist::VersionSync.
-my $min_version = '1.0.0';
+my $min_version = '1.0.1';
 eval "use Test::Dist::VersionSync $min_version";
 plan( skip_all => "Test::Dist::VersionSync $min_version required." )
 	if $@;

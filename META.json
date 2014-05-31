@@ -61,115 +61,115 @@
    "provides" : {
       "App::GitHooks" : {
          "file" : "lib/App/GitHooks.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::CommitMessage" : {
          "file" : "lib/App/GitHooks/CommitMessage.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Config" : {
          "file" : "lib/App/GitHooks/Config.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Constants" : {
          "file" : "lib/App/GitHooks/Constants.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook" : {
          "file" : "lib/App/GitHooks/Hook.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::ApplypatchMsg" : {
          "file" : "lib/App/GitHooks/Hook/ApplypatchMsg.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::CommitMsg" : {
          "file" : "lib/App/GitHooks/Hook/CommitMsg.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostApplypatch" : {
          "file" : "lib/App/GitHooks/Hook/PostApplypatch.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostCheckout" : {
          "file" : "lib/App/GitHooks/Hook/PostCheckout.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostCommit" : {
          "file" : "lib/App/GitHooks/Hook/PostCommit.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostMerge" : {
          "file" : "lib/App/GitHooks/Hook/PostMerge.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostReceive" : {
          "file" : "lib/App/GitHooks/Hook/PostReceive.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostRewrite" : {
          "file" : "lib/App/GitHooks/Hook/PostRewrite.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PostUpdate" : {
          "file" : "lib/App/GitHooks/Hook/PostUpdate.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PreApplypatch" : {
          "file" : "lib/App/GitHooks/Hook/PreApplypatch.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PreAutoGc" : {
          "file" : "lib/App/GitHooks/Hook/PreAutoGc.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PreCommit" : {
          "file" : "lib/App/GitHooks/Hook/PreCommit.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PreRebase" : {
          "file" : "lib/App/GitHooks/Hook/PreRebase.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PreReceive" : {
          "file" : "lib/App/GitHooks/Hook/PreReceive.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::PrepareCommitMsg" : {
          "file" : "lib/App/GitHooks/Hook/PrepareCommitMsg.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Hook::Update" : {
          "file" : "lib/App/GitHooks/Hook/Update.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Plugin" : {
          "file" : "lib/App/GitHooks/Plugin.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Plugin::Test::CustomReply" : {
          "file" : "lib/App/GitHooks/Plugin/Test/CustomReply.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Plugin::Test::PrintSTDERR" : {
          "file" : "lib/App/GitHooks/Plugin/Test/PrintSTDERR.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::StagedChanges" : {
          "file" : "lib/App/GitHooks/StagedChanges.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Terminal" : {
          "file" : "lib/App/GitHooks/Terminal.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Test" : {
          "file" : "lib/App/GitHooks/Test.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "App::GitHooks::Utils" : {
          "file" : "lib/App/GitHooks/Utils.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       }
    },
    "release_status" : "stable",
@@ -185,5 +185,5 @@
          "url" : "https://github.com/guillaumeaubert/App-GitHooks"
       }
    },
-   "version" : "v1.0.0"
+   "version" : "v1.0.1"
 }
