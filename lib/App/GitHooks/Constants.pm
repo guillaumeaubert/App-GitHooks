@@ -27,15 +27,15 @@ our $VERSION = '1.0.0';
 
 =over 4
 
-=item * $PLUGIN_RETURN_FAILED
+=item * C<$PLUGIN_RETURN_FAILED>
 
 Indicates that the checks performed by the plugin did not pass.
 
-=item * $PLUGIN_RETURN_SKIPPED
+=item * C<$PLUGIN_RETURN_SKIPPED>
 
 Indicates that the checks performed by the plugin were skipped.
 
-=item * $PLUGIN_RETURN_PASSED
+=item * C<$PLUGIN_RETURN_PASSED>
 
 Indicates that the checks performed by the plugin passed.
 
@@ -52,11 +52,11 @@ our $PLUGIN_RETURN_PASSED = 1;
 
 =over 4
 
-=item * $HOOK_EXIT_SUCCESS
+=item * C<$HOOK_EXIT_SUCCESS>
 
 Indicates that the hook executed successfully.
 
-=item * $HOOK_EXIT_FAILURE
+=item * C<$HOOK_EXIT_FAILURE>
 
 Indicates that the hook failed to execute correctly.
 
@@ -72,11 +72,11 @@ our $HOOK_EXIT_FAILURE = 1;
 
 =over 4
 
-=item * :PLUGIN_RETURN_CODES
+=item * C<:PLUGIN_RETURN_CODES>
 
 Exports C<$PLUGIN_RETURN_FAILED>, C<$PLUGIN_RETURN_SKIPPED>, and C<$PLUGIN_RETURN_PASSED>.
 
-=item * :HOOK_EXIT_CODES
+=item * C<:HOOK_EXIT_CODES>
 
 Exports C<$HOOK_EXIT_SUCCESS>, C<$HOOK_EXIT_FAILURE>.
 
