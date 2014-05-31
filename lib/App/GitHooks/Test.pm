@@ -240,7 +240,7 @@ sub ok_setup_repository
 		'Set up temporary test repository.',
 		sub
 		{
-			plan( tests => 6 + scalar( @$hooks ) );
+			plan( tests => 8 + scalar( @$hooks ) );
 
 			# Create a temporary repository.
 			ok(
@@ -252,6 +252,22 @@ sub ok_setup_repository
 				'Create the test repository.',
 			);
 			note( 'Using test repository ' . $repository->work_tree() );
+
+			lives_ok(
+				sub
+				{
+					$repository->run( 'config', 'user.email', 'author1@example.com' );
+				},
+				'Set the test author\'s email.',
+			);
+
+			lives_ok(
+				sub
+				{
+					$repository->run( 'config', 'user.name', 'Test Author' );
+				},
+				'Set the test author\'s name.',
+			);
 
 			# Make sure we have a hook template available.
 			my $hook_template_ref = __PACKAGE__->section_data(
