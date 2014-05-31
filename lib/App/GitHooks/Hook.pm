@@ -40,7 +40,7 @@ Arguments:
 
 =item * app I<(mandatory)>
 
-An C<App::GitHooks> object.
+An L<App::GitHooks> object.
 
 =back
 
