@@ -12,6 +12,7 @@ WriteMakefile
                    'Config::Tiny' => 0,
                    'Cwd' => 0,
                    'Data::Dumper' => 0,
+                   'Data::Section' => 0,
                    'Data::Validate::Type' => 0,
                    'File::Basename' => 0,
                    'File::Slurp' => 0,
