@@ -1,4 +1,11 @@
 .perlcriticrc
+Build.PL
+LICENSE
+MANIFEST
+MANIFEST.SKIP
+META.json
+META.yml
+Makefile.PL
 README.md
 examples/examples.txt
 examples/githook.pl
@@ -19,6 +26,7 @@ hooks/pre-rebase
 hooks/pre-receive
 hooks/prepare-commit-msg
 hooks/update
+ignore.txt
 lib/App/GitHooks.pm
 lib/App/GitHooks/CommitMessage.pm
 lib/App/GitHooks/Config.pm
