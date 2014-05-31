@@ -1,3 +1,4 @@
+.perlcriticrc
 examples/examples.txt
 examples/githook.pl
 hooks/applypatch-msg
