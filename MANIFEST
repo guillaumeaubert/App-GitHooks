@@ -65,3 +65,12 @@ t/45-Hook/PreCommit/00-load.t
 t/45-Hook/PreCommit/10-run.t
 t/45-Hook/PrepareCommitMsg/00-load.t
 t/45-Hook/PrepareCommitMsg/10-run.t
+xt/changes.t
+xt/kwalitee.t
+xt/manifest.t
+xt/module_versions.t
+xt/mojibake.t
+xt/perlcritic.t
+xt/pod-coverage.t
+xt/pod.t
+xt/unix_eol.t
