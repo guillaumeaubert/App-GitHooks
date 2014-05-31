@@ -54,7 +54,7 @@
             "Test::More" : "0",
             "Text::Wrap" : "0",
             "Try::Tiny" : "0",
-            "perl" : "5.006"
+            "perl" : "5.01"
          }
       }
    },

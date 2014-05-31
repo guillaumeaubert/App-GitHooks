@@ -50,7 +50,7 @@ my $builder = $class->new(
 	},
 	requires             =>
 	{
-		'perl'                  => 5.006,
+		'perl'                  => 5.010,
 		'Capture::Tiny'         => 0,
 		'Carp'                  => 0,
 		'Class::Load'           => 0,
