@@ -1,3 +1,5 @@
+examples/examples.txt
+examples/githook.pl
 hooks/applypatch-msg
 hooks/commit-msg
 hooks/hook.pl
