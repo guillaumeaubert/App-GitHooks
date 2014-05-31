@@ -494,7 +494,7 @@ sub new
 			terminal              => App::GitHooks::Terminal->new(),
 			arguments             => $arguments,
 			hook_name             => $name,
-			repository            => Git::Repository->new(),
+			repository            => undef,
 			use_colors            => 1,
 		},
 		$class,
@@ -830,6 +830,8 @@ Return the underlying C<Git::Repository> object for the current project.
 sub get_repository
 {
 	my ( $self ) = @_;
+
+	$self->{'repository'} //= Git::Repository->new();
 
 	return $self->{'repository'};
 }
