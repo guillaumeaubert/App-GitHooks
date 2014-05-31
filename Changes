@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.0.2  2014-05-31
+        - Fixed prerequisites.
+
 v1.0.1  2014-05-31
         - Tweaked POD formatting.
         - Instantiated a new Git::Repository object on demand only to help with
