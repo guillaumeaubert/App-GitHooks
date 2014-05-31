@@ -35,11 +35,11 @@ App::GitHooks::Plugin::Test::CustomReply - A test plugin that allows specifying 
 
 =head1 VERSION
 
-Version 0.1.0
+Version 1.0.0
 
 =cut
 
-our $VERSION = '0.1.0';
+our $VERSION = '1.0.0';
 
 our $HOOK_REPLIES;
 
