@@ -30,7 +30,7 @@ WriteMakefile
                    'Test::FailWarnings' => 0,
                    'Test::Git' => 0,
                    'Test::More' => 0,
-                   'Test::Type' => 0,
+                   'Test::Type' => '1.002',
                    'Text::Wrap' => 0,
                    'Try::Tiny' => 0
                  },
