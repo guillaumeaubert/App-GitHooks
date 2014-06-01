@@ -240,7 +240,7 @@ sub ok_setup_repository
 		'Set up temporary test repository.',
 		sub
 		{
-			plan( tests => 8 + scalar( @$hooks ) );
+			plan( tests => 10 + scalar( @$hooks ) );
 
 			# Create a temporary repository.
 			ok(
@@ -303,7 +303,7 @@ sub ok_setup_repository
 			{
 				skip(
 					'Test coverage not enabled.',
-					3,
+					5,
 				) if !$test_coverage;
 
 				# Find out in which directory the coverage database should be stored.
@@ -343,9 +343,19 @@ sub ok_setup_repository
 				# coverage-specific version of the test githook template will use that symlink as
 				# the source for the App::GitHooks modules. As long as the target system supports
 				# symlinks, it then allows for coverage testing.
+				# Note: lib/ is necessary for testing coverage via 'prove', but
+				# blib/lib/ is necessary for testing coverage via 'cover'.
 				ok(
 					symlink( Cwd::getcwd() . '/lib', $repository->work_tree() . '/lib' ),
-					'Symlink lib/ into the test repository to allow proper merging of coverage databases.',
+					'Symlink lib/ into the test repository to allow proper merging of coverage databases (with "prove").',
+				);
+				ok(
+					mkdir( $repository->work_tree() . '/blib' ),
+					'Create a blib/ directory in the test repository.',
+				);
+				ok(
+					symlink( Cwd::getcwd() . '/lib', $repository->work_tree() . '/blib/lib' ),
+					'Symlink blib/lib/ into the test repository to allow proper merging of coverage databases (with "cover").',
 				);
 			};
 
