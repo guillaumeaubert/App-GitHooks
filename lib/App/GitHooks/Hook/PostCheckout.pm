@@ -14,11 +14,11 @@ App::GitHooks::Hook::PostCheckout - Handle the post-checkout hook.
 
 =head1 VERSION
 
-Version 1.0.2
+Version 1.0.3
 
 =cut
 
-our $VERSION = '1.0.2';
+our $VERSION = '1.0.3';
 
 
 =head1 BUGS

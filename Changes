@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.0.3  2014-06-01
+        - Fixed test coverage when using 'cover' instead of 'prove'.
+
 v1.0.2  2014-05-31
         - Fixed prerequisites.
 
