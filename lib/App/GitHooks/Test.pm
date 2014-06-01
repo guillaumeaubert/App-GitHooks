@@ -633,7 +633,6 @@ use Devel::Cover qw(
 	-silent 1
 	-db {cover_db_path}
 	+ignore .git
-	+select /App/GitHooks
 	-merge 1
 );
 use App::GitHooks;
