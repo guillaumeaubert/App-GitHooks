@@ -66,6 +66,11 @@ This distribution also includes a C<hooks/> directory that you can symlink
 C<.git/hooks/> to instead, to get all the hooks set up properly in one swoop.
 
 
+=head1 GIT REQUIREMENTS
+
+L<App::GitHooks> requires git v1.7.4.1 or above.
+
+
 =head1 VALID GIT HOOK NAMES
 
 =over 4
