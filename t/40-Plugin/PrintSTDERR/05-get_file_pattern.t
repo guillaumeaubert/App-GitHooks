@@ -11,11 +11,16 @@ use strict;
 use warnings;
 
 use Test::FailWarnings -allow_deps => 1;
-use Test::More tests => 2;
+use Test::Git;
+use Test::More;
 use Test::Type;
 
 use App::GitHooks::Plugin::Test::PrintSTDERR;
 
+
+# Require git.
+has_git( '1.5.0' );
+plan( tests => 2 );
 
 can_ok(
 	'App::GitHooks::Plugin::Test::PrintSTDERR',

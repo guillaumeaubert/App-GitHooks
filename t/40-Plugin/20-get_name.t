@@ -6,8 +6,13 @@ use warnings;
 use App::GitHooks::Plugin;
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
-use Test::More tests => 6;
+use Test::Git;
+use Test::More;
 
+
+# Require git.
+has_git( '1.5.0' );
+plan( tests => 6 );
 
 can_ok(
 	'App::GitHooks::Plugin',

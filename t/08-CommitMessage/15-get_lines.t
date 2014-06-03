@@ -6,8 +6,12 @@ use warnings;
 use App::GitHooks::CommitMessage;
 use Test::Deep;
 use Test::FailWarnings -allow_deps => 1;
+use Test::Git;
 use Test::More;
 
+
+# Require git.
+has_git( '1.5.0' );
 
 my $tests =
 [

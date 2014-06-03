@@ -7,8 +7,13 @@ use App::GitHooks::CommitMessage;
 use Scalar::Util qw();
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
-use Test::More tests => 4;
+use Test::Git;
+use Test::More;
 
+
+# Require git.
+has_git( '1.5.0' );
+plan( tests => 4 );
 
 ok(
 	defined(
