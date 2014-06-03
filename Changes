@@ -1,5 +1,9 @@
 Revision history for App-GitHooks
 
+v1.0.6  2014-06-03
+        - Bumped git requirement to v1.7.4.1.
+        - Documented git requirement.
+
 v1.0.5  2014-06-02
         - Synced manifest.
 

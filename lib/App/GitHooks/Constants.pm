@@ -14,11 +14,11 @@ App::GitHooks::Constants - Constants used by various modules in the App::GitHook
 
 =head1 VERSION
 
-Version 1.0.5
+Version 1.0.6
 
 =cut
 
-our $VERSION = '1.0.5';
+our $VERSION = '1.0.6';
 
 
 =head1 VARIABLES

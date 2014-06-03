@@ -12,7 +12,7 @@ use Try::Tiny;
 # can include it everywhere.
 
 
-our $VERSION = '1.0.5';
+our $VERSION = '1.0.6';
 
 
 =head2 get_project_prefixes()
