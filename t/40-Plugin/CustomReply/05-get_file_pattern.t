@@ -19,7 +19,7 @@ use App::GitHooks::Plugin::Test::CustomReply;
 
 
 # Require git.
-has_git( '1.5.0' );
+has_git( '1.7.4.1' );
 plan( tests => 2 );
 
 can_ok(

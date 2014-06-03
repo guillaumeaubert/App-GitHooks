@@ -12,7 +12,7 @@ use Test::Type;
 
 
 # Require git.
-has_git( '1.5.0' );
+has_git( '1.7.4.1' );
 plan( tests => 5 );
 
 can_ok(
