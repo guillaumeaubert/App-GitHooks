@@ -58,6 +58,7 @@ lib/App/GitHooks/Terminal.pm
 lib/App/GitHooks/Test.pm
 lib/App/GitHooks/Utils.pm
 t/00-load.t
+t/01-git_version.t
 t/05-Terminal/00-load.t
 t/05-Terminal/10-new.t
 t/05-Terminal/20-get_encoding.t
