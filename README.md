@@ -30,6 +30,7 @@ INSTALLATION
 
 2. Symlink your git hooks under .git/hooks to a file with the following content:
 
+```
 	#!/usr/bin/env perl
 
 	use strict;
@@ -41,6 +42,7 @@ INSTALLATION
 		name      => $0,
 		arguments => \@ARGV,
 	);
+```
 
 Adjust `/usr/bin/env perl` as needed, if that line is not a valid
 interpreter, your git actions will fail with `error: cannot run
