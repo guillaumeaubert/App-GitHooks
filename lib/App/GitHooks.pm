@@ -48,7 +48,7 @@ our $VERSION = '1.0.6';
 
 Symlink your git hooks under .git/hooks to a file with the following content:
 
-	#!perl
+	#!/usr/bin/env perl
 
 	use strict;
 	use warnings;
@@ -64,6 +64,10 @@ All you need to do then is install the plugins you are interested in!
 
 This distribution also includes a C<hooks/> directory that you can symlink
 C<.git/hooks/> to instead, to get all the hooks set up properly in one swoop.
+
+Important: adjust C</usr/bin/env perl> as needed, if that line is not a valid
+interpreter, your git actions will fail with C<error: cannot run
+.git/hooks/[hook name]: No such file or directory>.
 
 
 =head1 GIT REQUIREMENTS
