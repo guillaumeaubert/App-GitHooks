@@ -11,14 +11,14 @@ that supports many plugins.
 OVERVIEW
 --------
 
-Here's an example of it in action, running the C<pre-commit> hook checks before
+ * Here's an example of it in action, running the `pre-commit` hook checks before
 the commit message can be entered:
 
-![Successful checks](https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-success.png)
+	![Successful checks](https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-success.png)
 
-Here is another example, with a Perl file that fails compilation this time:
+ * Here is another example, with a Perl file that fails compilation this time:
 
-![Failing checks](https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-failure.png)
+	![Failing checks](https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-failure.png)
 
 
 INSTALLATION
@@ -26,27 +26,25 @@ INSTALLATION
 
 1. Install this distribution, with your preferred CPAN client:
 
-	cpanm App::GitHooks
+		cpanm App::GitHooks
 
 2. Symlink your git hooks under .git/hooks to a file with the following content:
 
-```
-	#!/usr/bin/env perl
+		#!/usr/bin/env perl
 
-	use strict;
-	use warnings;
+		use strict;
+		use warnings;
 
-	use App::GitHooks;
+		use App::GitHooks;
 
-	App::GitHooks->run(
-		name      => $0,
-		arguments => \@ARGV,
-	);
-```
+		App::GitHooks->run(
+			name      => $0,
+			arguments => \@ARGV,
+		);
 
-Adjust `/usr/bin/env perl` as needed, if that line is not a valid
-interpreter, your git actions will fail with `error: cannot run
-.git/hooks/[hook name]: No such file or directory`.
+	Adjust `/usr/bin/env perl` as needed, if that line is not a valid
+	interpreter, your git actions will fail with `error: cannot run
+	.git/hooks/[hook name]: No such file or directory`.
 
 3. Install the plugins you are interested in, with your prefered CPAN client.
 
