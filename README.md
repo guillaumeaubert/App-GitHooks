@@ -4,19 +4,136 @@ App-GitHooks
 [![Build Status](https://travis-ci.org/guillaumeaubert/App-GitHooks.png?branch=master)](https://travis-ci.org/guillaumeaubert/App-GitHooks)
 [![Coverage Status](https://coveralls.io/repos/guillaumeaubert/App-GitHooks/badge.png?branch=master)](https://coveralls.io/r/guillaumeaubert/App-GitHooks?branch=master)
 
-Plugin-based system to run specific actions and checks when git hooks are
-triggered.
+C<App::GitHooks> is an extensible and easy to configure git hooks framework
+that supports many plugins.
+
+
+OVERVIEW
+--------
+
+Here's an example of it in action, running the C<pre-commit> hook checks before
+the commit message can be entered:
+
+![Successful checks](https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-success.png)
+
+Here is another example, with a Perl file that fails compilation this time:
+
+![Failing checks](https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-failure.png)
 
 
 INSTALLATION
 ------------
 
-To install this module, run the following commands:
+1. Install this distribution, with your preferred CPAN client:
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
+	cpanm App::GitHooks
+
+2. Symlink your git hooks under .git/hooks to a file with the following content:
+
+	#!/usr/bin/env perl
+
+	use strict;
+	use warnings;
+
+	use App::GitHooks;
+
+	App::GitHooks->run(
+		name      => $0,
+		arguments => \@ARGV,
+	);
+
+Adjust `/usr/bin/env perl` as needed, if that line is not a valid
+interpreter, your git actions will fail with `error: cannot run
+.git/hooks/[hook name]: No such file or directory`.
+
+3. Install the plugins you are interested in, with your prefered CPAN client.
+
+4. Enjoy!
+
+
+OFFICIALLY SUPPORTED PLUGINS
+----------------------------
+
+ * [App::GitHooks::Plugin::BlockNOCOMMIT]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::BlockNOCOMMIT)
+
+Prevent committing code with #NOCOMMIT mentions.
+
+ * [App::GitHooks::Plugin::BlockProductionCommits]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::BlockProductionCommits)
+
+Prevent commits in a production environment.
+
+ * [App::GitHooks::Plugin::DetectCommitNoVerify]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::DetectCommitNoVerify)
+
+Find out when someone uses --no-verify and append the pre-commit checks to the
+commit message.
+
+ * [App::GitHooks::Plugin::ForceRegularUpdate]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::ForceRegularUpdate)
+
+Force running a specific tool at regular intervals.
+
+ * [App::GitHooks::Plugin::MatchBranchTicketID]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::MatchBranchTicketID)
+
+Detect discrepancies between the ticket ID specified by the branch name and the
+one in the commit message.
+
+ * [App::GitHooks::Plugin::PerlCompile]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::PerlCompile)
+
+Verify that Perl files compile without errors.
+
+ * [App::GitHooks::Plugin::PerlCritic]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::PerlCritic)
+
+Verify that all changes and addition to the Perl files pass PerlCritic checks.
+
+ * [App::GitHooks::Plugin::PerlInterpreter]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::PerlInterpreter)
+
+Enforce a specific Perl interpreter on the first line of Perl files.
+
+ * [App::GitHooks::Plugin::PgBouncerAuthSyntax]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::PgBouncerAuthSyntax)
+
+Verify that the syntax of PgBouncer auth files is correct.
+
+ * [App::GitHooks::Plugin::PrependTicketID]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::PrependTicketID)
+
+Derive a ticket ID from the branch name and prepend it to the commit-message.
+
+ * [App::GitHooks::Plugin::RequireCommitMessage]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::RequireCommitMessage)
+
+Require a commit message.
+
+ * [App::GitHooks::Plugin::RequireTicketID]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::RequireTicketID)
+
+Verify that staged Ruby files compile.
+
+ * [App::GitHooks::Plugin::ValidatePODFormat]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::ValidatePODFormat)
+
+Validate POD format in Perl and POD files.
+
+
+CONTRIBUTED PLUGINS
+-------------------
+
+ * [App::GitHooks::Plugin::RubyCompile]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::RubyCompile)
+
+Verify that staged Ruby files compile.
+
+ * [App::GitHooks::Plugin::PreventTrailingWhitespace]
+   (https://metacpan.org/pod/App::GitHooks::Plugin::PreventTrailingWhitespace)
+
+Prevent trailing whitespace from being committed.
 
 
 SUPPORT AND DOCUMENTATION
