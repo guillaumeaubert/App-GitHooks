@@ -44,6 +44,28 @@ Version 1.0.6
 our $VERSION = '1.0.6';
 
 
+=head1 DESCRIPTION
+
+C<App::GitHooks> is an extensible and easy to configure git hooks framework that supports many plugins.
+
+Here's an example of it in action, running the C<pre-commit> hook checks before
+the commit message can be entered:
+
+=begin html
+
+<div><img src="https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-success.png"></div>
+
+=end html
+
+Here is another example, with a Perl file that fails compilation this time:
+
+=begin html
+
+<div><img src="https://raw.github.com/guillaumeaubert/App-GitHooks/master/img/app-githooks-example-failure.png"></div>
+
+=end html
+
+
 =head1 SYNOPSIS
 
 Symlink your git hooks under .git/hooks to a file with the following content:
