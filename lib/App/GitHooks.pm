@@ -439,8 +439,10 @@ sub run
 		);
 
 		# Force the output to match the terminal encoding.
-		my $terminal_encoding = $self->get_terminal()->get_encoding();
-		binmode( STDOUT, "encoding($terminal_encoding)" );
+		my $terminal = $self->get_terminal();
+		my $terminal_encoding = $terminal->get_encoding();
+		binmode( STDOUT, "encoding($terminal_encoding)" )
+			if $terminal->is_utf8();
 
 		# Run the hook.
 		my $hook_exit_code = $hook_class->run(
