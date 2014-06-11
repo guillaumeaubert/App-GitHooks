@@ -87,11 +87,15 @@ sub run
 	# If the commit message was modified above, we need to overwrite the file.
 	if ( $commit_message->has_changed() )
 	{
-		my $term_encoding = $app->get_terminal()->get_encoding();
+		my $terminal = $app->get_terminal();
+		my $terminal_encoding = $terminal->get_encoding();
+		my $filehandle_encoding = $terminal->is_utf8()
+			? ":encoding($terminal_encoding)"
+			: '';
 
 		# Note: File::Slurp doesn't support utf-8, unfortunately.
-		open( my $fh, ">:encoding($term_encoding)", $commit_message_file )
-			|| croak "Failed to open $commit_message_file with encoding $term_encoding: $!";
+		open( my $fh, ">$filehandle_encoding", $commit_message_file )
+			|| croak "Failed to open $commit_message_file with encoding '$filehandle_encoding': $!";
 		print $fh $commit_message->get_message();
 		close( $fh );
 	}
