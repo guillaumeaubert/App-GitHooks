@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.0.8  2014-06-11
+        - Forced encoding only when utf8 characters are to be printed (part 2).
+
 v1.0.7  2014-06-07
         - Forced encoding only when utf8 characters are to be printed.
         - Added screenshots of App::GitHooks in action.

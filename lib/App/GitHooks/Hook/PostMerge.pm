@@ -14,11 +14,11 @@ App::GitHooks::Hook::PostMerge - Handle the post-merge hook.
 
 =head1 VERSION
 
-Version 1.0.7
+Version 1.0.8
 
 =cut
 
-our $VERSION = '1.0.7';
+our $VERSION = '1.0.8';
 
 
 =head1 BUGS
