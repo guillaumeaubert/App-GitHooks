@@ -29,8 +29,8 @@ hooks/pre-receive
 hooks/prepare-commit-msg
 hooks/update
 ignore.txt
-img/app-githooks-example-success.png
 img/app-githooks-example-failure.png
+img/app-githooks-example-success.png
 lib/App/GitHooks.pm
 lib/App/GitHooks/CommitMessage.pm
 lib/App/GitHooks/Config.pm
