@@ -45,6 +45,8 @@ repository, so that all of App::GitHooks' hooks are triggered properly.
 
 =item * C<uninstall> - Remove all the git hooks for the current repository.
 
+=item * C<version> - Display the version of App::GitHooks in use.
+
 =back
 
 
@@ -84,6 +86,7 @@ my $actions =
 	install   => \&install,
 	uninstall => \&uninstall,
 	help      => \&usage,
+	version   => \&version,
 };
 if ( !defined( $actions->{ $action } ) )
 {
@@ -188,6 +191,22 @@ sub install
 			print "Unable to set up hook file for $hook_name, skipped: $_\n";
 		};
 	}
+
+	return;
+}
+
+
+=head2 version()
+
+Display the version of App::GitHooks in use.
+
+	version();
+
+=cut
+
+sub version
+{
+	print "Using App::GitHooks version $App::GitHooks::VERSION.\n";
 
 	return;
 }
