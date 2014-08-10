@@ -10,6 +10,7 @@ META.json
 META.yml
 Makefile.PL
 README.md
+bin/githooks
 examples/examples.txt
 examples/githook.pl
 hooks/applypatch-msg
