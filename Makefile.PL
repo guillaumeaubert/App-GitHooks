@@ -38,6 +38,7 @@ WriteMakefile
                    'Test::More' => 0,
                    'Term::Encoding' => 0,
                    'Git::Repository' => 0,
+                   'Test::Compile' => 0,
                    'File::Basename' => 0,
                    'Config::Tiny' => 0,
                    'Cwd' => 0
