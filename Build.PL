@@ -85,6 +85,10 @@ my $builder = $class->new(
 	{
 		'Module::Build'         => 0,
 	},
+	script_files         =>
+	[
+		'bin/githooks',
+	],
 	meta_merge           =>
 	{
 		resources               =>
