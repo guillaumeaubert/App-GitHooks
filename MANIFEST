@@ -100,6 +100,7 @@ t/45-Hook/PreCommit/00-load.t
 t/45-Hook/PreCommit/10-run.t
 t/45-Hook/PrepareCommitMsg/00-load.t
 t/45-Hook/PrepareCommitMsg/10-run.t
+t/90-githooks/00-load.t
 xt/changes.t
 xt/kwalitee.t
 xt/manifest.t
