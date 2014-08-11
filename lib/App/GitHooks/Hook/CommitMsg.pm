@@ -24,11 +24,11 @@ App::GitHooks::Hook::CommitMsg - Handle the commit-msg hook.
 
 =head1 VERSION
 
-Version 1.0.8
+Version 1.1.0
 
 =cut
 
-our $VERSION = '1.0.8';
+our $VERSION = '1.1.0';
 
 
 =head1 METHODS

@@ -30,7 +30,7 @@ my $tests =
 	{
 		name        => 'Call "githooks version".',
 		arguments   => [ 'version' ],
-		expected    => qr/\QUsing App::GitHooks version 1.0.8.\E/,
+		expected    => qr/\QUsing App::GitHooks version 1.1.0.\E/,
 		hooks_exist => 0,
 	},
 	{

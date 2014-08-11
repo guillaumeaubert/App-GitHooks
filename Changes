@@ -1,5 +1,9 @@
 Revision history for App-GitHooks
 
+v1.1.0  2014-08-10
+        - Added "githooks" command line utility to set up in git repositories
+          all the hooks supported by App::GitHooks.
+
 v1.0.8  2014-06-11
         - Forced encoding only when utf8 characters are to be printed (part 2).
 
