@@ -144,6 +144,8 @@ sub uninstall
 		unlink( $hook_filename );
 	}
 
+	print "The git hooks have been uninstalled successfully.\n";
+
 	return;
 }
 
@@ -165,6 +167,7 @@ sub install
 	my $template = $$hook_template_ref;
 	$template =~ s/\Q{{perl}}\E/$^X/g;
 
+	my $errors = 0;
 	foreach my $hook_name ( @$supported_hooks )
 	{
 		my $hook_content = $template;
@@ -184,9 +187,15 @@ sub install
 		}
 		catch
 		{
+			$errors++;
 			print "Unable to set up hook file for $hook_name, skipped: $_\n";
 		};
 	}
+
+	print $errors > 0
+		? 'Some errors occurred when installing the git hooks, please try again.'
+		: 'The git hooks have been installed successfully.';
+	print "\n";
 
 	return;
 }
