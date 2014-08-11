@@ -10,6 +10,7 @@ META.json
 META.yml
 Makefile.PL
 README.md
+bin/githooks
 examples/examples.txt
 examples/githook.pl
 hooks/applypatch-msg
@@ -99,6 +100,8 @@ t/45-Hook/PreCommit/00-load.t
 t/45-Hook/PreCommit/10-run.t
 t/45-Hook/PrepareCommitMsg/00-load.t
 t/45-Hook/PrepareCommitMsg/10-run.t
+t/90-githooks/00-load.t
+t/90-githooks/10-commands.t
 xt/changes.t
 xt/kwalitee.t
 xt/manifest.t

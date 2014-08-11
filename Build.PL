@@ -42,11 +42,15 @@ my $builder = $class->new(
 	build_requires       =>
 	{
 		'Capture::Tiny'         => 0,
+		'File::Spec'            => 0,
 		'Git::Repository'       => 0,
 		'Scalar::Util'          => 0,
+		'Test::Compile'         => 0,
 		'Test::Deep'            => 0,
 		'Test::Exception'       => 0,
 		'Test::FailWarnings'    => 0,
+		'Test::Git'             => 0,
+		'Test::More'            => 0,
 		'Test::Type'            => 1.002000,
 	},
 	requires             =>
@@ -63,9 +67,11 @@ my $builder = $class->new(
 		'File::Basename'        => 0,
 		'File::Slurp'           => 0,
 		'File::Spec'            => 0,
+		'Getopt::Long'          => 0,
 		'Git::Repository'       => 0,
 		'Module::Pluggable'     => 0,
 		'Parallel::ForkManager' => 0,
+		'Pod::Usage'            => 0,
 		'Storable'              => 0,
 		'Term::ANSIColor'       => 0,
 		'Term::Encoding'        => 0,
@@ -85,6 +91,10 @@ my $builder = $class->new(
 	{
 		'Module::Build'         => 0,
 	},
+	script_files         =>
+	[
+		'bin/githooks',
+	],
 	meta_merge           =>
 	{
 		resources               =>

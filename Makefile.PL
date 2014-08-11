@@ -3,42 +3,47 @@ require 5.010;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
+  'test' => {
+              'TESTS' => 't/*.t t/06-Constants/*.t t/90-githooks/*.t t/40-Plugin/*.t t/40-Plugin/PrintSTDERR/*.t t/40-Plugin/CustomReply/*.t t/45-Hook/*.t t/45-Hook/CommitMsg/*.t t/45-Hook/PreCommit/*.t t/45-Hook/PrepareCommitMsg/*.t t/05-Terminal/*.t t/08-CommitMessage/*.t'
+            },
+  'PL_FILES' => {},
+  'INSTALLDIRS' => 'site',
   'NAME' => 'App::GitHooks',
+  'EXE_FILES' => [
+                   'bin/githooks'
+                 ],
   'VERSION_FROM' => 'lib/App/GitHooks.pm',
   'PREREQ_PM' => {
-                   'Capture::Tiny' => 0,
-                   'Carp' => 0,
-                   'Class::Load' => 0,
-                   'Config::Tiny' => 0,
-                   'Cwd' => 0,
-                   'Data::Dumper' => 0,
-                   'Data::Section' => 0,
-                   'Data::Validate::Type' => 0,
-                   'File::Basename' => 0,
-                   'File::Slurp' => 0,
-                   'File::Spec' => 0,
-                   'Git::Repository' => 0,
-                   'Module::Pluggable' => 0,
-                   'Parallel::ForkManager' => 0,
                    'Scalar::Util' => 0,
+                   'Parallel::ForkManager' => 0,
+                   'Capture::Tiny' => 0,
+                   'Pod::Usage' => 0,
+                   'File::Spec' => 0,
                    'Storable' => 0,
-                   'Term::ANSIColor' => 0,
-                   'Term::Encoding' => 0,
-                   'Term::ReadKey' => 0,
-                   'Test::Deep' => 0,
-                   'Test::Exception' => 0,
-                   'Test::FailWarnings' => 0,
-                   'Test::Git' => 0,
-                   'Test::More' => 0,
-                   'Test::Type' => '1.002',
+                   'Data::Section' => 0,
                    'Text::Wrap' => 0,
-                   'Try::Tiny' => 0
-                 },
-  'INSTALLDIRS' => 'site',
-  'EXE_FILES' => [],
-  'PL_FILES' => {},
-  'test' => {
-              'TESTS' => 't/*.t t/06-Constants/*.t t/05-Terminal/*.t t/08-CommitMessage/*.t t/45-Hook/*.t t/45-Hook/PrepareCommitMsg/*.t t/45-Hook/CommitMsg/*.t t/45-Hook/PreCommit/*.t t/40-Plugin/*.t t/40-Plugin/CustomReply/*.t t/40-Plugin/PrintSTDERR/*.t'
-            }
+                   'Test::Type' => '1.002',
+                   'Data::Validate::Type' => 0,
+                   'Test::Deep' => 0,
+                   'Term::ReadKey' => 0,
+                   'File::Slurp' => 0,
+                   'Try::Tiny' => 0,
+                   'Module::Pluggable' => 0,
+                   'Getopt::Long' => 0,
+                   'Test::Git' => 0,
+                   'Test::Exception' => 0,
+                   'Term::ANSIColor' => 0,
+                   'Test::FailWarnings' => 0,
+                   'Data::Dumper' => 0,
+                   'Class::Load' => 0,
+                   'Carp' => 0,
+                   'Test::More' => 0,
+                   'Term::Encoding' => 0,
+                   'Git::Repository' => 0,
+                   'Test::Compile' => 0,
+                   'File::Basename' => 0,
+                   'Config::Tiny' => 0,
+                   'Cwd' => 0
+                 }
 )
 ;
