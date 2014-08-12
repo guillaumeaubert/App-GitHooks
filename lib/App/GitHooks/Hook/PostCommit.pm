@@ -14,11 +14,11 @@ App::GitHooks::Hook::PostCommit - Handle the post-commit hook.
 
 =head1 VERSION
 
-Version 1.1.0
+Version 1.1.1
 
 =cut
 
-our $VERSION = '1.1.0';
+our $VERSION = '1.1.1';
 
 
 =head1 BUGS

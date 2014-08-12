@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.1.1  2014-08-11
+				- Amended tests to use the current Perl to instantiate "githooks".
+
 v1.1.0  2014-08-10
         - Added "githooks" command line utility to set up in git repositories
           all the hooks supported by App::GitHooks.
