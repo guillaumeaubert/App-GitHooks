@@ -30,7 +30,7 @@ my $tests =
 	{
 		name        => 'Call "githooks version".',
 		arguments   => [ 'version' ],
-		expected    => qr/\QUsing App::GitHooks version 1.1.0.\E/,
+		expected    => qr/\QUsing App::GitHooks version \E\d+\.\d+\.\d+\./,
 		hooks_exist => 0,
 	},
 	{
@@ -84,11 +84,19 @@ foreach my $test ( @$tests )
 		sub
 		{
 			plan( tests => 5 );
-
 			ok(
 				defined(
 					my $command = System::Command->new(
+						# Specify explicitly which Perl to use, to prevent conflicts
+						# between the system Perl, /usr/bin/env perl, and others specified
+						# by smoke testers.
+						$^X,
+						# Make sure we have the same includes as the parents, or we may
+						# miss some of the dependencies installed for testing.
+						( map { "-I$_" } @INC ),
+						# The script to test.
 						File::Spec->catfile( $source_directory, 'bin', 'githooks' ),
+						# The arguments to pass to the script.
 						@{ $test->{'arguments'} }
 					)
 				),
