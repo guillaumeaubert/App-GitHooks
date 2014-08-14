@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.1.2  2014-08-13
+        - Require Test::Compile v1.1.0 to use its object-oriented interface.
+
 v1.1.1  2014-08-11
 				- Amended tests to use the current Perl to instantiate "githooks".
 
