@@ -68,28 +68,35 @@ Here is another example, with a Perl file that fails compilation this time:
 
 =head1 SYNOPSIS
 
-Symlink your git hooks under .git/hooks to a file with the following content:
+=over4
 
-	#!/usr/bin/env perl
+=item 1.
 
-	use strict;
-	use warnings;
+Install this distribution (with cpanm or your preferred CPAN client):
 
-	use App::GitHooks;
+	cpanm App::GitHooks
 
-	App::GitHooks->run(
-			name      => $0,
-			arguments => \@ARGV,
-	);
+=item 2.
 
-All you need to do then is install the plugins you are interested in!
+Install the plugins you are interested in (with cpanmor your prefered CPAN
+client), as C<App::GitHooks> does not bundle them. See the list of plugins
+below, but for example:
 
-This distribution also includes a C<hooks/> directory that you can symlink
-C<.git/hooks/> to instead, to get all the hooks set up properly in one swoop.
+	cpanm App::GitHooks::Plugin::BlockNOCOMMIT
+	cpanm App::GitHooks::Plugin::DetectCommitNoVerify
+	...
 
-Important: adjust C</usr/bin/env perl> as needed, if that line is not a valid
-interpreter, your git actions will fail with C<error: cannot run
-.git/hooks/[hook name]: No such file or directory>.
+=item 3.
+
+Go to the git repository for which you want to set up git hooks, and run:
+
+	githooks install
+
+=item 4.
+
+Enjoy!
+
+=back
 
 
 =head1 GIT REQUIREMENTS
@@ -1001,6 +1008,35 @@ sub _to_camelcase
 
 	return $name;
 }
+
+
+=head1 NOTES
+
+=head2 Manual installation
+
+Symlink your git hooks under .git/hooks to a file with the following content:
+
+	#!/usr/bin/env perl
+
+	use strict;
+	use warnings;
+
+	use App::GitHooks;
+
+	App::GitHooks->run(
+			name      => $0,
+			arguments => \@ARGV,
+	);
+
+All you need to do then is install the plugins you are interested in!
+
+This distribution also includes a C<hooks/> directory that you can symlink /
+copy to C<.git/hooks/> instead , to get all the hooks set up properly in one
+swoop.
+
+Important: adjust C</usr/bin/env perl> as needed, if that line is not a valid
+interpreter, your git actions will fail with C<error: cannot run
+.git/hooks/[hook name]: No such file or directory>.
 
 
 =head1 BUGS

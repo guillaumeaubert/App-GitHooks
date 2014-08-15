@@ -24,29 +24,21 @@ the commit message can be entered:
 INSTALLATION
 ------------
 
-1. Install this distribution, with your preferred CPAN client:
+1. Install this distribution (with `cpanm` or your preferred CPAN client):
 
 		cpanm App::GitHooks
 
-2. Symlink your git hooks under .git/hooks to a file with the following content:
+2. Install the plugins you are interested in (with `cpanm`or your prefered CPAN
+   client), as `App::GitHooks` does not bundle them. See the list of plugins
+   below, but for example:
 
-		#!/usr/bin/env perl
+		cpanm App::GitHooks::Plugin::BlockNOCOMMIT
+		cpanm App::GitHooks::Plugin::DetectCommitNoVerify
+		...
 
-		use strict;
-		use warnings;
+3. Go to the git repository for which you want to set up git hooks, and run:
 
-		use App::GitHooks;
-
-		App::GitHooks->run(
-			name      => $0,
-			arguments => \@ARGV,
-		);
-
-	Adjust `/usr/bin/env perl` as needed, if that line is not a valid
-	interpreter, your git actions will fail with `error: cannot run
-	.git/hooks/[hook name]: No such file or directory`.
-
-3. Install the plugins you are interested in, with your prefered CPAN client.
+		githooks install
 
 4. Enjoy!
 
