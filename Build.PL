@@ -55,6 +55,7 @@ my $builder = $class->new(
 	},
 	requires             =>
 	{
+		'autodie'               => 0,
 		'perl'                  => 5.010,
 		'Capture::Tiny'         => 0,
 		'Carp'                  => 0,
