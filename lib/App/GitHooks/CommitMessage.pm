@@ -18,11 +18,11 @@ App::GitHooks::CommitMessage - A git commit message.
 
 =head1 VERSION
 
-Version 1.1.3
+Version 1.1.4
 
 =cut
 
-our $VERSION = '1.1.3';
+our $VERSION = '1.1.4';
 
 
 =head1 METHODS
