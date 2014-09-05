@@ -56,6 +56,8 @@ repository, so that all of App::GitHooks' hooks are triggered properly.
 
 =item * C<--chmod> - Chmod to use for the git hooks (default: 755).
 
+=back
+
 =cut
 
 # Parse the action.

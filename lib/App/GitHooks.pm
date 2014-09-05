@@ -68,7 +68,7 @@ Here is another example, with a Perl file that fails compilation this time:
 
 =head1 SYNOPSIS
 
-=over4
+=over 4
 
 =item 1.
 
