@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.1.5  2014-09-06
+        - Fix documentation typos.
+
 v1.1.4  2014-08-22
         - Added missing "autodie" pre-requisite.
 
