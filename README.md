@@ -4,8 +4,8 @@ App-GitHooks
 [![Build Status](https://travis-ci.org/guillaumeaubert/App-GitHooks.png?branch=master)](https://travis-ci.org/guillaumeaubert/App-GitHooks)
 [![Coverage Status](https://coveralls.io/repos/guillaumeaubert/App-GitHooks/badge.png?branch=master)](https://coveralls.io/r/guillaumeaubert/App-GitHooks?branch=master)
 
-C<App::GitHooks> is an extensible and easy to configure git hooks framework
-that supports many plugins.
+`App::GitHooks` is an extensible and easy to configure git hooks framework that
+supports many plugins.
 
 
 OVERVIEW
