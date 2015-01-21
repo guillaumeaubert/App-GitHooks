@@ -58,7 +58,11 @@ sub run
 	my $has_errors = 0;
 	foreach my $plugin ( @$plugins )
 	{
+		# Since Perl doesn't allow dashes in method names but git hook names have
+		# dashes, we need to make sure we convert dashes to underscores when
+		# generating the method name to run.
 		my $method = 'run_' . $app->get_hook_name();
+		$method =~ s/-/_/g;
 
 		my $return_code = $plugin->$method(
 			app => $app,
