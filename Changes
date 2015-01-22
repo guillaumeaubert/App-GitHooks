@@ -1,5 +1,10 @@
 Revision history for App-GitHooks
 
+v1.2.0  2015-01-21
+        - Fix running git actions with an underscore in their name and that are
+          using the default App::GitHooks::Hook->run() (GH-15). Thank you,
+          Jacob Maurer!
+
 v1.1.5  2014-09-06
         - Fix documentation typos.
 
