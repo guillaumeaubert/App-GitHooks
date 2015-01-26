@@ -12,6 +12,17 @@ use Try::Tiny;
 # can include it everywhere.
 
 
+=head1 NAME
+
+App::GitHooks::Utils - Support functions for App::GitHooks and its plugins.
+
+
+=head1 VERSION
+
+Version 1.2.0
+
+=cut
+
 our $VERSION = '1.2.0';
 
 
