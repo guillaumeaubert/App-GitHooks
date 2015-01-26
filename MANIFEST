@@ -87,6 +87,7 @@ t/13-Config/20-get_regex.t
 t/14-Utils/00-load.t
 t/14-Utils/10-get_project_prefixes.t
 t/14-Utils/12-get_project_prefix_regex.t
+t/14-Utils/14-get_ticket_id_regex.t
 t/15-run.t
 t/16-run-dash.t
 t/40-Plugin/00-load.t
