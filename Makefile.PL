@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile
 (
   'test' => {
-              'TESTS' => 't/*.t t/06-Constants/*.t t/90-githooks/*.t t/40-Plugin/*.t t/40-Plugin/PrintSTDERR/*.t t/40-Plugin/CustomReply/*.t t/45-Hook/*.t t/45-Hook/CommitMsg/*.t t/45-Hook/PreCommit/*.t t/45-Hook/PrepareCommitMsg/*.t t/05-Terminal/*.t t/08-CommitMessage/*.t'
+              'TESTS' => 't/*.t t/06-Constants/*.t t/90-githooks/*.t t/40-Plugin/*.t t/40-Plugin/PrintSTDERR/*.t t/40-Plugin/CustomReply/*.t t/13-Config/*.t t/45-Hook/*.t t/45-Hook/CommitMsg/*.t t/45-Hook/PreCommit/*.t t/45-Hook/PrepareCommitMsg/*.t t/05-Terminal/*.t t/08-CommitMessage/*.t t/14-Utils/*.t'
             },
   'PL_FILES' => {},
   'INSTALLDIRS' => 'site',
