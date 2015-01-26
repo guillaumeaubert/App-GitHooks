@@ -82,6 +82,7 @@ t/08-CommitMessage/30-is_empty.t
 t/08-CommitMessage/35-has_changed.t
 t/10-new.t
 t/12-force_non_interactive.t
+t/14-Utils/00-load.t
 t/15-run.t
 t/16-run-dash.t
 t/40-Plugin/00-load.t
