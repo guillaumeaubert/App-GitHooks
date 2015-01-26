@@ -83,6 +83,7 @@ t/08-CommitMessage/35-has_changed.t
 t/10-new.t
 t/12-force_non_interactive.t
 t/13-Config/00-load.t
+t/13-Config/20-get_regex.t
 t/14-Utils/00-load.t
 t/14-Utils/10-get_project_prefixes.t
 t/14-Utils/12-get_project_prefix_regex.t
