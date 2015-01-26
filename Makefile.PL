@@ -30,6 +30,7 @@ WriteMakefile
                    'Data::Dumper' => 0,
                    'Test::More' => 0,
                    'Term::Encoding' => 0,
+                   'File::Temp' => 0,
                    'Scalar::Util' => 0,
                    'Parallel::ForkManager' => 0,
                    'File::Spec' => 0,
