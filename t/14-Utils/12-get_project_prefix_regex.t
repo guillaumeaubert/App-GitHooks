@@ -24,6 +24,11 @@ my $tests =
 		expected => '',
 	},
 	{
+		name     => 'Single project prefix.',
+		config   => "project_prefixes = DEV\n",
+		expected => 'DEV',
+	},
+	{
 		name     => 'Space-separated project prefixes.',
 		config   => "project_prefixes = OPS DEV\n",
 		expected => '(?:OPS|DEV)',
