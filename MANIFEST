@@ -71,6 +71,7 @@ t/05-Terminal/50-get_width.t
 t/06-Constants/00-load.t
 t/06-Constants/10-imports.t
 t/10-new.t
+t/11-clone.t
 t/12-force_non_interactive.t
 t/13-Config/00-load.t
 t/13-Config/20-get_regex.t
