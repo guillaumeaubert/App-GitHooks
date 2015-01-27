@@ -63,7 +63,6 @@ ok(
 	'Retrieve the current directory.',
 );
 
-
 ok(
 	defined(
 		my $repository = test_repository()
