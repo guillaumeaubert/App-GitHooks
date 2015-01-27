@@ -30,7 +30,7 @@ our $VERSION = '1.2.0';
 
 Get an arrayref of valid project prefixes.
 
-	my $project_prefixes = get_project_prefixes( $app );
+	my $project_prefixes = App::GitHooks::Utils::get_project_prefixes( $app );
 
 Arguments:
 
@@ -60,7 +60,17 @@ sub get_project_prefixes
 
 Return a non-capturing regex that will match all the valid project prefixes.
 
-	my $project_prefix_regex = GitHooks::Utils::get_project_prefix_regex( $app );
+	my $project_prefix_regex = App::GitHooks::Utils::get_project_prefix_regex( $app );
+
+Arguments:
+
+=over 4
+
+=item * $app
+
+An C<App::GitHooks> instance.
+
+=back
 
 =cut
 
@@ -89,7 +99,7 @@ sub get_project_prefix_regex
 
 Return a regex that will extract a ticket ID from a commit message, if it exists.
 
-	my $ticket_id_regex = GitHooks::Utils::get_ticket_id_regex( $app );
+	my $ticket_id_regex = App::GitHooks::Utils::get_ticket_id_regex( $app );
 
 Arguments:
 
@@ -121,7 +131,7 @@ sub get_ticket_id_regex
 Return the ticket ID derived from the name of the current branch for this
 repository.
 
-	my $ticket_id = GitHooks::Utils::get_ticket_id_from_branch_name( $app );
+	my $ticket_id = App::GitHooks::Utils::get_ticket_id_from_branch_name( $app );
 
 Arguments:
 
