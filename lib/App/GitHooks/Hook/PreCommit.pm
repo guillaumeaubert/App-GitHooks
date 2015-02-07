@@ -92,9 +92,10 @@ sub run
 
 =head2 run_all_tests()
 
-Run all the tests available for the pre-commit hook.
+Run all the tests available for the pre-commit hook and return whether issues
+were detected.
 
-	run_all_tests( $app );
+	my $tests_success = run_all_tests( $app );
 
 This is a two step operation:
 
