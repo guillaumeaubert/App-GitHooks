@@ -40,6 +40,7 @@ WriteMakefile
                    'File::Slurp' => 0,
                    'Module::Pluggable' => 0,
                    'Class::Load' => 0,
+                   'Readonly' => 0,
                    'Carp' => 0,
                    'Git::Repository' => 0,
                    'Test::Compile' => '1.001',

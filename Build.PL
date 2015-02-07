@@ -74,6 +74,7 @@ my $builder = $class->new(
 		'Module::Pluggable'     => 0,
 		'Parallel::ForkManager' => 0,
 		'Pod::Usage'            => 0,
+		'Readonly'              => 0,
 		'Storable'              => 0,
 		'Term::ANSIColor'       => 0,
 		'Term::Encoding'        => 0,

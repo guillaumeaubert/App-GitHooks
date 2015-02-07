@@ -5,6 +5,7 @@ use warnings;
 
 # External dependencies.
 use base 'Exporter';
+use Readonly;
 
 
 =head1 NAME
@@ -43,9 +44,9 @@ Indicates that the checks performed by the plugin passed.
 
 =cut
 
-our $PLUGIN_RETURN_FAILED = -1;
-our $PLUGIN_RETURN_SKIPPED = 0;
-our $PLUGIN_RETURN_PASSED = 1;
+Readonly::Scalar our $PLUGIN_RETURN_FAILED => -1;
+Readonly::Scalar our $PLUGIN_RETURN_SKIPPED => 0;
+Readonly::Scalar our $PLUGIN_RETURN_PASSED => 1;
 
 
 =head2 Hook exit codes
@@ -64,8 +65,8 @@ Indicates that the hook failed to execute correctly.
 
 =cut
 
-our $HOOK_EXIT_SUCCESS = 0;
-our $HOOK_EXIT_FAILURE = 1;
+Readonly::Scalar our $HOOK_EXIT_SUCCESS => 0;
+Readonly::Scalar our $HOOK_EXIT_FAILURE => 1;
 
 
 =head1 EXPORT TAGS
