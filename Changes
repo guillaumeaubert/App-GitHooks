@@ -1,5 +1,11 @@
 Revision history for App-GitHooks
 
+v1.2.1  2015-03-23
+        - Replace File::Slurp with Path::Tiny (GH-17).
+        - Improve and clean up tests.
+        - Improve and clean up documentation.
+        - Make constants read-only.
+
 v1.2.0  2015-01-21
         - Fix running git actions with an underscore in their name and that are
           using the default App::GitHooks::Hook->run() (GH-15). Thank you,

@@ -14,11 +14,11 @@ App::GitHooks::Plugin - Base class for plugins.
 
 =head1 VERSION
 
-Version 1.2.0
+Version 1.2.1
 
 =cut
 
-our $VERSION = '1.2.0';
+our $VERSION = '1.2.1';
 
 our $SUPPORTED_SUBS =
 [
