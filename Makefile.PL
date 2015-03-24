@@ -37,7 +37,7 @@ WriteMakefile
                    'Data::Section' => 0,
                    'Text::Wrap' => 0,
                    'Data::Validate::Type' => 0,
-                   'File::Slurp' => 0,
+                   'Path::Tiny' => 0,
                    'Module::Pluggable' => 0,
                    'Class::Load' => 0,
                    'Readonly' => 0,

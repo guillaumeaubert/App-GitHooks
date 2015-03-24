@@ -8,8 +8,8 @@ use Carp qw( croak );
 use Data::Dumper;
 use Data::Validate::Type;
 use File::Basename qw();
-use File::Slurp qw();
 use Parallel::ForkManager qw();
+use Path::Tiny qw();
 use Try::Tiny;
 
 # Internal dependencies.
@@ -489,7 +489,7 @@ sub analyze_changes
 	$self->{'is_revert'} = 0;
 	if ( $self->{'is_merge'} )
 	{
-		my $merge_message = File::Slurp::read_file( $repository->work_tree() . '/.git/MERGE_MSG' );
+		my $merge_message = Path::Tiny::path( $repository->work_tree(), '.git', 'MERGE_MSG' )->slurp();
 		$self->{'is_revert'} = 1
 			if $merge_message =~ /^Revert\s/;
 	}

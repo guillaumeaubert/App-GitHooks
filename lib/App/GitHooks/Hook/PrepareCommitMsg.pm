@@ -9,7 +9,7 @@ use base 'App::GitHooks::Hook';
 # External dependencies.
 use Carp;
 use Data::Dumper;
-use File::Slurp ();
+use Path::Tiny qw();
 
 # Internal dependencies.
 use App::GitHooks::CommitMessage;
@@ -67,7 +67,7 @@ sub run
 	my $command_line_arguments = $app->get_command_line_arguments();
 	my $commit_message_file = $command_line_arguments->[0];
 	my $commit_message = App::GitHooks::CommitMessage->new(
-		message => File::Slurp::read_file( $commit_message_file ) // '',
+		message => Path::Tiny::path( $commit_message_file )->slurp_utf8() // '',
 		app     => $app,
 	);
 
@@ -88,16 +88,11 @@ sub run
 	if ( $commit_message->has_changed() )
 	{
 		my $terminal = $app->get_terminal();
-		my $terminal_encoding = $terminal->get_encoding();
-		my $filehandle_encoding = $terminal->is_utf8()
-			? ":encoding($terminal_encoding)"
-			: '';
-
-		# Note: File::Slurp doesn't support utf-8, unfortunately.
-		open( my $fh, ">$filehandle_encoding", $commit_message_file )
-			|| croak "Failed to open $commit_message_file with encoding '$filehandle_encoding': $!";
-		print $fh $commit_message->get_message();
-		close( $fh );
+		my $message = $commit_message->get_message();
+		my $file = Path::Tiny::path( $commit_message_file );
+		$terminal->is_utf8()
+			? $file->spew_utf8( $message )
+			: $file->spew( $message );
 	}
 
 	# .git/COMMIT-MSG-CHECKS is a file we use to track if the pre-commit hook has

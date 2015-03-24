@@ -12,8 +12,8 @@ use Carp;
 use Cwd;
 use Data::Section -setup;
 use Data::Validate::Type;
-use File::Slurp;
 use File::Spec;
+use Path::Tiny qw();
 use Test::Exception;
 use Test::Git;
 use Test::More;
@@ -96,10 +96,8 @@ sub ok_add_file
 				lives_ok(
 					sub
 					{
-						File::Slurp::write_file(
-							File::Spec->catfile( $repository->work_tree(), $path ),
-							$content,
-						);
+						Path::Tiny::path( $repository->work_tree(), $path )
+							->spew( $content );
 					},
 					'Write file.',
 				);
@@ -372,7 +370,8 @@ sub ok_setup_repository
 						lives_ok(
 							sub
 							{
-								File::Slurp::write_file( $hook_path, $hook_template );
+								Path::Tiny::path( $hook_path )
+									->spew( $hook_template );
 							},
 							'Write the hook.',
 						);
@@ -412,10 +411,8 @@ sub ok_setup_repository
 					$content .= $config;
 
 					# Write the file.
-					File::Slurp::write_file(
-						$repository->work_tree() . '/.githooksrc',
-						$content,
-					);
+					Path::Tiny::path( $repository->work_tree(), '.githooksrc' )
+						->spew( $content );
 				},
 				'Write a .githooksrc config file.',
 			);

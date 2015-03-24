@@ -10,7 +10,7 @@ use base 'App::GitHooks::Hook';
 use Carp;
 use Data::Dumper;
 use Data::Validate::Type;
-use File::Slurp ();
+use Path::Tiny qw();
 
 # Internal dependencies.
 use App::GitHooks::Constants qw( :HOOK_EXIT_CODES :PLUGIN_RETURN_CODES );
@@ -80,8 +80,11 @@ sub run
 	# If the checks passed, write a file for the prepare-commit-msg hook to know
 	# that we've already run the checks and there's no need to do it a second time.
 	# This is what allows it to detect when --no-verify was used.
-	File::Slurp::write_file( '.git/COMMIT-MSG-CHECKS', $checks_pass )
-		if $checks_pass;
+	if ( $checks_pass )
+	{
+		Path::Tiny::path( '.git', 'COMMIT-MSG-CHECKS' )
+			->spew( $checks_pass );
+	}
 
 	# Indicate if we should allow continuing to the commit message or not.
 	return $checks_pass

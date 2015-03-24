@@ -9,7 +9,7 @@ use base 'App::GitHooks::Hook';
 # External dependencies.
 use Carp;
 use Data::Dumper;
-use File::Slurp ();
+use Path::Tiny qw();
 
 # Internal dependencies.
 use App::GitHooks::CommitMessage;
@@ -88,7 +88,7 @@ sub run
 		my $command_line_arguments = $app->get_command_line_arguments();
 		my $commit_message_file = $command_line_arguments->[0];
 		my $commit_message = App::GitHooks::CommitMessage->new(
-			message => File::Slurp::read_file( $commit_message_file ) // '',
+			message => Path::Tiny::path( $commit_message_file )->slurp_utf8() // '',
 			app     => $app,
 		);
 
