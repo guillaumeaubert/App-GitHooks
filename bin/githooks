@@ -152,11 +152,11 @@ sub uninstall
 }
 
 
-=head2 uninstall()
+=head2 install()
 
 Install git hooks triggering App::GitHooks for the current git repository.
 
-	uninstall();
+	install();
 
 =cut
 
