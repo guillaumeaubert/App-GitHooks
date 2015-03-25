@@ -7,8 +7,10 @@ use warnings;
 # repository.
 use lib './lib/';
 
+# External dependencies.
 use App::GitHooks;
 use Cwd qw();
+use Data::Dumper;
 use Data::Section -setup;
 use File::Spec;
 use Getopt::Long;
@@ -81,9 +83,9 @@ my $supported_hooks = $App::GitHooks::HOOK_NAMES;
 # Actions.
 my $actions =
 {
+	help      => \&usage,
 	install   => \&install,
 	uninstall => \&uninstall,
-	help      => \&usage,
 	version   => \&version,
 };
 if ( !defined( $actions->{ $action } ) )
