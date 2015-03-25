@@ -49,6 +49,8 @@ repository, so that all of App::GitHooks' hooks are triggered properly.
 
 =item * C<install> - Install all the git hooks for the current repository.
 
+=item * C<list> - List the plugins currently installed.
+
 =item * C<uninstall> - Remove all the git hooks for the current repository.
 
 =item * C<version> - Display the version of App::GitHooks in use.
@@ -85,6 +87,7 @@ my $actions =
 {
 	help      => \&usage,
 	install   => \&install,
+	list      => \&list,
 	uninstall => \&uninstall,
 	version   => \&version,
 };
@@ -220,6 +223,48 @@ Display the version of App::GitHooks in use.
 sub version
 {
 	print "Using App::GitHooks version $App::GitHooks::VERSION.\n";
+
+	return;
+}
+
+
+=head2 list()
+
+List the plugins currently installed.
+
+	list();
+
+=cut
+
+sub list
+{
+	# Instantiate an object, but we're not using any hook-dependent features
+	# (yet) in this function, so any hook name will do here.
+	my $app = App::GitHooks->new(
+		name => 'pre-commit',
+	);
+
+	# Retrieve all the plugins available.
+	my $all_plugins = $app->get_all_plugins();
+
+	# Display the list of plugins by hook.
+	print "\n";
+	if ( scalar( keys %$all_plugins ) == 0 )
+	{
+		print "No plugins installed!\n";
+	}
+	else
+	{
+		foreach my $hook_name ( keys %$all_plugins )
+		{
+			print "Plugins active for $hook_name:\n";
+			foreach my $plugin_name ( @{ $all_plugins->{ $hook_name } } )
+			{
+				print "    - $plugin_name\n";
+			}
+			print "\n";
+		}
+	}
 
 	return;
 }
