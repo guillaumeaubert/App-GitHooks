@@ -3,6 +3,10 @@
 use strict;
 use warnings;
 
+# Use ./lib/ to be able to run this command line utility when checking out the
+# repository.
+use lib './lib/';
+
 use App::GitHooks;
 use Cwd qw();
 use Data::Section -setup;
