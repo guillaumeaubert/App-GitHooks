@@ -119,7 +119,7 @@ sub run_all_tests
 	my ( $app ) = @_;
 
 	# Find all the plugins that support the pre-commit hook.
-	my $plugins = $app->get_plugins( 'pre-commit' );
+	my $plugins = $app->get_hook_plugins( 'pre-commit' );
 
 	# Run the plugins.
 	my $tests_success = 1;

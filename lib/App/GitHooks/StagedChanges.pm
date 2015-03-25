@@ -228,7 +228,7 @@ sub check_file ## no critic (Subroutines::ProhibitExcessComplexity)
 	# Use an arrayref here instead of a hashref, to preserve test order.
 	my $tests = [];
 
-	my $plugins = $app->get_plugins( 'pre-commit-file' );
+	my $plugins = $app->get_hook_plugins( 'pre-commit-file' );
 	foreach my $plugin ( @$plugins )
 	{
 		my $pattern = $plugin->get_file_pattern( app => $app );

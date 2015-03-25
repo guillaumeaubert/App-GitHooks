@@ -73,7 +73,7 @@ sub run
 
 	# Find and run all the plugins that support the prepare-commit-msg hook.
 	my $tests_success = 1;
-	my $plugins = $app->get_plugins( 'prepare-commit-msg' );
+	my $plugins = $app->get_hook_plugins( 'prepare-commit-msg' );
 	foreach my $plugin ( @$plugins )
 	{
 		my $check_result = $plugin->run_prepare_commit_msg(

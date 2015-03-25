@@ -597,12 +597,12 @@ sub clone
 }
 
 
-=head2 get_plugins()
+=head2 get_hook_plugins()
 
 Return an arrayref of all the plugins installed and available for a specific
 git hook on the current system.
 
-	my $plugins = $app->get_plugins(
+	my $plugins = $app->get_hook_plugins(
 		$hook_name
 	);
 
@@ -618,7 +618,7 @@ The name of the git hook for which to find available plugins.
 
 =cut
 
-sub get_plugins
+sub get_hook_plugins
 {
 	my ( $self, $hook_name ) = @_;
 
@@ -630,67 +630,83 @@ sub get_plugins
 	$hook_name =~ s/-/_/g;
 
 	# Searching for plugins is expensive, so we cache it here.
-	if ( !defined( $self->{'plugins'} ) )
-	{
-		# Find all available plugins regardless of the desired target hook, using
-		# Module::Pluggable.
-		my @discovered_plugins = __PACKAGE__->_search_plugins();
-
-		# If the environment restricts the list of plugins to run, we use that.
-		# Otherwise, we exclude test plugins.
-		my @plugins = ();
-		my $config = $self->get_config();
-		my $limit_plugins = $config->get( 'testing', 'limit_plugins' ) // '';
-		if ( $limit_plugins =~ /\w/ )
-		{
-			my %allowed_plugins =
-				map { $_ => 1 }
-				split( /(?:\s+|\s*,\s*)/, $limit_plugins );
-
-			foreach my $plugin ( @discovered_plugins )
-			{
-				next if !$allowed_plugins{ $plugin };
-
-				push( @plugins, $plugin );
-				delete( $allowed_plugins{ $plugin } );
-			}
-		}
-		else
-		{
-			foreach my $plugin ( @discovered_plugins )
-			{
-				next if $plugin =~ /^\QApp::GitHooks::Plugin::Test::\E/x;
-				push( @plugins, $plugin );
-			}
-		}
-		#print STDERR Dumper( \@plugins );
-
-		# Parse each plugin to find out which hook(s) they apply to.
-		$self->{'plugins'} = {};
-		foreach my $plugin ( @plugins )
-		{
-			# Load the plugin class.
-			Class::Load::load_class( $plugin );
-
-			# Store the list of plugins available for each hook.
-			my $hooks_declared;
-			foreach my $hook ( @{ $App::GitHooks::Plugin::SUPPORTED_SUBS } )
-			{
-				next if !$plugin->can( 'run_' . $hook );
-				$hooks_declared = 1;
-
-				$self->{'plugins'}->{ $hook } //= [];
-				push( @{ $self->{'plugins'}->{ $hook } }, $plugin );
-			}
-
-			# Alert if the plugin didn't declare any hook handling subroutines -
-			# that's probably the sign of a typo in a subroutine name.
-			carp "The plugin $plugin does not declare any hook handling subroutines, check for typos in sub names?"
-				if !$hooks_declared;
-		}
-	}
+		$self->{'plugins'} = $self->get_all_plugins()
+			if !defined( $self->{'plugins'} );
 
 	return $self->{'plugins'}->{ $hook_name } // [];
+}
+
+
+=head2 get_all_plugins()
+
+Return a hashref of the plugins available for every git hook.
+
+	my $all_plugins = $self->get_all_plugins();
+
+=cut
+
+sub get_all_plugins
+{
+	my ( $self ) = @_;
+
+	# Find all available plugins regardless of the desired target hook, using
+	# Module::Pluggable.
+	my @discovered_plugins = __PACKAGE__->_search_plugins();
+
+	# If the environment restricts the list of plugins to run, we use that.
+	# Otherwise, we exclude test plugins.
+	my @plugins = ();
+	my $config = $self->get_config();
+	my $limit_plugins = $config->get( 'testing', 'limit_plugins' ) // '';
+	if ( $limit_plugins =~ /\w/ )
+	{
+		my %allowed_plugins =
+			map { $_ => 1 }
+			split( /(?:\s+|\s*,\s*)/, $limit_plugins );
+
+		foreach my $plugin ( @discovered_plugins )
+		{
+			next if !$allowed_plugins{ $plugin };
+
+			push( @plugins, $plugin );
+			delete( $allowed_plugins{ $plugin } );
+		}
+	}
+	else
+	{
+		foreach my $plugin ( @discovered_plugins )
+		{
+			next if $plugin =~ /^\QApp::GitHooks::Plugin::Test::\E/x;
+			push( @plugins, $plugin );
+		}
+	}
+	#print STDERR Dumper( \@plugins );
+
+	# Parse each plugin to find out which hook(s) they apply to.
+	my $all_plugins = {};
+	foreach my $plugin ( @plugins )
+	{
+		# Load the plugin class.
+		Class::Load::load_class( $plugin );
+
+		# Store the list of plugins available for each hook.
+		my $hooks_declared;
+		foreach my $hook ( @{ $App::GitHooks::Plugin::SUPPORTED_SUBS } )
+		{
+			next if !$plugin->can( 'run_' . $hook );
+			$hooks_declared = 1;
+
+			$all_plugins->{ $hook } //= [];
+			push( @{ $all_plugins->{ $hook } }, $plugin );
+		}
+
+		# Alert if the plugin didn't declare any hook handling subroutines -
+		# that's probably the sign of a typo in a subroutine name.
+		carp "The plugin $plugin does not declare any hook handling subroutines, check for typos in sub names?"
+			if !$hooks_declared;
+	}
+
+	return $all_plugins;
 }
 
 

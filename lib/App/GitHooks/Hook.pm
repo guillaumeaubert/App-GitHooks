@@ -52,7 +52,7 @@ sub run
 	my $app = $args{'app'};
 
 	# Find all the plugins that are applicable for this hook.
-	my $plugins = $app->get_plugins( $app->get_hook_name() );
+	my $plugins = $app->get_hook_plugins( $app->get_hook_name() );
 
 	# Run all the plugins.
 	my $has_errors = 0;

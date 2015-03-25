@@ -98,7 +98,7 @@ sub run
 			if $commit_message->is_empty();
 
 		# Find all the tests we will need to run.
-		my $plugins = $app->get_plugins( $app->get_hook_name() );
+		my $plugins = $app->get_hook_plugins( $app->get_hook_name() );
 		$has_errors = 0;
 		foreach my $plugin ( @$plugins )
 		{
