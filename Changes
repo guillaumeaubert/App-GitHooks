@@ -1,5 +1,9 @@
 Revision history for App-GitHooks
 
+v1.3.0  2015-03-25
+        - Add "list" command to "githooks" to display available plugins for
+          each git hook (GH-8).
+
 v1.2.1  2015-03-23
         - Replace File::Slurp with Path::Tiny (GH-17).
         - Improve and clean up tests.
