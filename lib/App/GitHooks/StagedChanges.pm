@@ -91,6 +91,8 @@ sub get_app
 Verify the changes that are being committed, and return information on
 whether the checks passed or failed.
 
+# TODO: update documentation.
+
 	my $checks_pass = $staged_changes->verify(
 		use_colors   => $use_colors, # default 1
 		app          => $app,
@@ -119,7 +121,9 @@ sub verify
 Verify that the files changed pass various rules. Return a boolean indicating
 if all the files pass (true) or fail (false) the tests.
 
-	my $all_files_pass = check_changed_files();
+# TODO: update documentation.
+
+	my ( $all_files_pass, $warnings ) = check_changed_files();
 
 =cut
 
@@ -148,21 +152,23 @@ sub check_changed_files
 
 	#  Check each file.
 	my $allow_commit = 1;
+	my $has_warnings = 0;
 	my $total = scalar( keys %$files );
 	my $count = 1;
 	foreach my $file ( sort keys %$files )
 	{
-		my $file_passes = $self->check_file(
+		my ( $file_passes, $file_warnings ) = $self->check_file(
 			file       => $file,
 			git_action => $files->{ $file },
 			total      => $total,
 			count      => $count,
 		);
 		$allow_commit &&= $file_passes;
+		$has_warnings ||= $file_warnings;
 		$count++;
 	}
 
-	return $allow_commit;
+	return ( $allow_commit, $has_warnings );
 }
 
 
@@ -170,7 +176,9 @@ sub check_changed_files
 
 Verify that that a given file passes all the verification rules.
 
-	my $file_passes = check_file( $file );
+# TODO: update documentation.
+
+	my ( $file_passes, $warnings ) = check_file( $file );
 
 =cut
 
@@ -193,7 +201,7 @@ sub check_file ## no critic (Subroutines::ProhibitExcessComplexity)
 			$app->color( 'bright_black', "- Skipping symlink." ) . "\n",
 			'    ',
 		);
-		return 1;
+		return ( 1, 0 );
 	}
 
 	# Skip directories if needed.
@@ -205,7 +213,7 @@ sub check_file ## no critic (Subroutines::ProhibitExcessComplexity)
 			$app->color( 'bright_black', "- Skipping excluded directory." ) . "\n",
 			'    ',
 		);
-		return 1;
+		return ( 1, 0 );
 	}
 
 	# If the file has no extension, try to determine it based on the first line
@@ -239,7 +247,7 @@ sub check_file ## no critic (Subroutines::ProhibitExcessComplexity)
 		);
 	}
 
-	return 1
+	return ( 1, 0 )
 	  if scalar( @$tests ) == 0;
 
 	# Run the checks in parallel.
@@ -259,7 +267,7 @@ sub check_file ## no critic (Subroutines::ProhibitExcessComplexity)
 			$app->color( 'bright_black', "- Skipping deleted file." ) . "\n",
 			'    ',
 		);
-		return 1;
+		return ( 1, 0 );
 	}
 	# Otherwise, display all the information.
 	else
@@ -272,15 +280,30 @@ sub check_file ## no critic (Subroutines::ProhibitExcessComplexity)
 
 	# Determine if the file passed all the checks or not.
 	my $file_passes = 1;
+	my $file_warnings = 0;
 	foreach my $output ( @$ordered_output )
 	{
 		my $return_value = $output->{'return_value'};
-		next if $return_value == $PLUGIN_RETURN_PASSED || $return_value == $PLUGIN_RETURN_SKIPPED;
-		$file_passes = 0;
-		last;
+
+		next if $return_value == $PLUGIN_RETURN_PASSED
+			|| $return_value == $PLUGIN_RETURN_SKIPPED;
+
+		if ( $return_value == $PLUGIN_RETURN_WARNED )
+		{
+			$file_warnings = 1;
+		}
+		elsif ( $return_value == $PLUGIN_RETURN_FAILED )
+		{
+			$file_passes = 0;
+			last;
+		}
+		else
+		{
+			croak "Unrecognized return value: >$return_value<";
+		}
 	}
 
-	return $file_passes;
+	return ( $file_passes, $file_warnings );
 }
 
 
@@ -421,7 +444,6 @@ sub format_check_output
 	my $error_message = $data->{'error_message'};
 
 	my $failure_character = $app->get_failure_character();
-	my $success_character = $app->get_success_character();
 
 	# Format the output.
 	my $output = '';
@@ -440,6 +462,7 @@ sub format_check_output
 	elsif ( $return_value == $PLUGIN_RETURN_PASSED )
 	{
 		# The check passed.
+		my $success_character = $app->get_success_character();
 		$output .= $app->wrap(
 			$app->color( 'green', $success_character ) . $app->color( 'bright_black', " $name" ) . "\n",
 			"    ",
@@ -450,6 +473,15 @@ sub format_check_output
 		# The check was skipped.
 		$output .= $app->wrap(
 			$app->color( 'bright_black', "- $name" ) . "\n",
+			"    ",
+		);
+	}
+	elsif ( $return_value == $PLUGIN_RETURN_WARNED )
+	{
+		# The check returned warnings.
+		my $warning_character = $app->get_warning_character();
+		$output .= $app->wrap(
+			$app->color( 'orange', $warning_character ) . $app->color( 'bright_black', " $name" ) . "\n",
 			"    ",
 		);
 	}

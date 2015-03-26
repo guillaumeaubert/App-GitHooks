@@ -137,7 +137,7 @@ foreach my $hook ( @$App::GitHooks::Plugin::SUPPORTED_SUBS )
 		croak "No return value specified for >$hook<."
 			if $return !~ /\w/;
 		croak "The return value for >$hook< in the [Test::CustomReply] section of the .githooksrc is not valid."
-			if $return !~ /^PLUGIN_RETURN_(?:FAILED|PASSED|SKIPPED)$/x;
+			if $return !~ /^PLUGIN_RETURN_(?:FAILED|PASSED|WARNED|SKIPPED)$/x;
 
 		return ${$return};
 	};

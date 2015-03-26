@@ -37,10 +37,34 @@ my $tests =
 	{
 		name        => 'Global = PASS and File = FAIL.',
 		config      => "[Test::CustomReply]\n"
-			. "pre_commit = PLUGIN_RETURN_SKIPPED\n"
+			. "pre_commit = PLUGIN_RETURN_PASSED\n"
 			. "pre_commit_file = PLUGIN_RETURN_FAILED\n",
 		expected    => qr/x Test plugin - custom return codes/,
 		exit_status => $HOOK_EXIT_FAILURE,
+	},
+	{
+		name        => 'Global = FAIL and File = PASS.',
+		config      => "[Test::CustomReply]\n"
+			. "pre_commit = PLUGIN_RETURN_FAILED\n"
+			. "pre_commit_file = PLUGIN_RETURN_PASSED\n",
+		expected    => qr/o Test plugin - custom return codes/,
+		exit_status => $HOOK_EXIT_FAILURE,
+	},
+	{
+		name        => 'Global = PASS and File = WARN.',
+		config      => "[Test::CustomReply]\n"
+			. "pre_commit = PLUGIN_RETURN_PASSED\n"
+			. "pre_commit_file = PLUGIN_RETURN_WARNED\n",
+		expected    => qr/! Test plugin - custom return codes/,
+		exit_status => $HOOK_EXIT_SUCCESS,
+	},
+	{
+		name        => 'Global = WARN and File = PASS.',
+		config      => "[Test::CustomReply]\n"
+			. "pre_commit = PLUGIN_RETURN_WARNED\n"
+			. "pre_commit_file = PLUGIN_RETURN_PASSED\n",
+		expected    => qr/\Qo Test plugin - custom return codes\E.*\QSome warnings were found, please review.\E/s,
+		exit_status => $HOOK_EXIT_SUCCESS,
 	},
 ];
 

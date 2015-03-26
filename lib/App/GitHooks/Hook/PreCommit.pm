@@ -123,22 +123,48 @@ sub run_all_tests
 
 	# Run the plugins.
 	my $tests_success = 1;
+	my $has_warnings = 0;
 	foreach my $plugin ( @$plugins )
 	{
 		my $check_result = $plugin->run_pre_commit(
 			app => $app,
 		);
+
 		$tests_success = 0
 			if $check_result == $PLUGIN_RETURN_FAILED;
+
+		$has_warnings = 1
+			if $check_result == $PLUGIN_RETURN_WARNED;
 	}
 
 	# Check the changed files individually with plugins that support
 	# "pre-commit-file".
-	my $file_checks = $app->get_staged_changes()->verify(
-		app => $app,
-	);
-	$tests_success = 0
-		if !$file_checks;
+	{
+		my ( $file_checks, $file_warnings ) = $app->get_staged_changes()->verify(
+			app => $app,
+		);
+		$tests_success = 0
+			if !$file_checks;
+		$has_warnings = 1
+			if $file_warnings;
+	}
+
+	# If warnings were found, notify users.
+	if ( $has_warnings )
+	{
+		# If we have a user, stop and ask if we should continue with the commit.
+		if ( $app->get_terminal()->is_interactive() )
+		{
+			print "Some warnings were found. Press <Enter> to continue committing or Ctrl-C to abort the commit.\n";
+			my $input = <STDIN>; ## no critic (InputOutput::ProhibitExplicitStdin)
+			print "\n";
+		}
+		# If we don't have a user, just warn and continue.
+		else
+		{
+			print "Some warnings were found, please review.\n";
+		}
+	}
 
 	return $tests_success;
 }

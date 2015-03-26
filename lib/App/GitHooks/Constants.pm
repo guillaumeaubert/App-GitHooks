@@ -36,17 +36,23 @@ Indicates that the checks performed by the plugin did not pass.
 
 Indicates that the checks performed by the plugin were skipped.
 
+=item * C<$PLUGIN_RETURN_WARNED>
+
+Indicates that the checks performed by the plugins didn't fail, but they didn't
+pass cleanly either and warnings were returned.
+
 =item * C<$PLUGIN_RETURN_PASSED>
 
-Indicates that the checks performed by the plugin passed.
+Indicates that the checks performed by the plugin passed and no warn.
 
 =back
 
 =cut
 
-Readonly::Scalar our $PLUGIN_RETURN_FAILED => -1;
+Readonly::Scalar our $PLUGIN_RETURN_FAILED  => -1;
 Readonly::Scalar our $PLUGIN_RETURN_SKIPPED => 0;
-Readonly::Scalar our $PLUGIN_RETURN_PASSED => 1;
+Readonly::Scalar our $PLUGIN_RETURN_PASSED  => 1;
+Readonly::Scalar our $PLUGIN_RETURN_WARNED  => 2;
 
 
 =head2 Hook exit codes
@@ -90,6 +96,7 @@ our @EXPORT_OK = qw(
 	$PLUGIN_RETURN_FAILED
 	$PLUGIN_RETURN_SKIPPED
 	$PLUGIN_RETURN_PASSED
+	$PLUGIN_RETURN_WARNED
 	$HOOK_EXIT_SUCCESS
 	$HOOK_EXIT_FAILURE
 );
@@ -103,6 +110,7 @@ our %EXPORT_TAGS =
 			$PLUGIN_RETURN_FAILED
 			$PLUGIN_RETURN_SKIPPED
 			$PLUGIN_RETURN_PASSED
+			$PLUGIN_RETURN_WARNED
 		)
 	],
 	HOOK_EXIT_CODES     =>

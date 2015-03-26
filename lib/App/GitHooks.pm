@@ -881,6 +881,24 @@ sub get_success_character
 }
 
 
+=head2 get_warning_character()
+
+Return a character to use to indicate a warning.
+
+	my $warning_character = $app->get_warning_character()
+
+=cut
+
+sub get_warning_character
+{
+	my ( $self ) = @_;
+
+	return $self->get_terminal()->is_utf8()
+		? "\x{26A0}"
+		: "!";
+}
+
+
 =head2 get_staged_changes()
 
 Return a C<App::GitHooks::StagedChanges> object corresponding to the changes
