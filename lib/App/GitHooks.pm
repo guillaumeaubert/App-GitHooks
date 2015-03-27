@@ -341,6 +341,15 @@ analyzing files as part of file-level checks.
 
 	skip_directories = /^cpan(?:-[^\/]+)?\//
 
+=item * force_plugins
+
+A comma-separated list of the plugins that must be present on the system and
+will be executed. If any plugins from this list are missing, the action will
+error out. If any other plugins not in this list are installed on the system,
+they will be ignored.
+
+	force_plugins = App::GitHooks::Plugin::ValidatePODFormat, App::GitHooks::Plugin::RequireCommitMessage
+
 =back
 
 
@@ -648,6 +657,7 @@ Return a hashref of the plugins available for every git hook.
 sub get_all_plugins
 {
 	my ( $self ) = @_;
+	my $config = $self->get_config();
 
 	# Find all available plugins regardless of the desired target hook, using
 	# Module::Pluggable.
@@ -655,21 +665,33 @@ sub get_all_plugins
 
 	# If the environment restricts the list of plugins to run, we use that.
 	# Otherwise, we exclude test plugins.
+	my $force_plugins = $config->get( '_', 'force_plugins' )
+		// '';
 	my @plugins = ();
-	my $config = $self->get_config();
-	my $limit_plugins = $config->get( 'testing', 'limit_plugins' ) // '';
-	if ( $limit_plugins =~ /\w/ )
+	if ( $force_plugins =~ /\w/ )
 	{
-		my %allowed_plugins =
+		my %forced_plugins =
 			map { $_ => 1 }
-			split( /(?:\s+|\s*,\s*)/, $limit_plugins );
+			split( /(?:\s+|\s*,\s*)/, $force_plugins );
 
 		foreach my $plugin ( @discovered_plugins )
 		{
-			next if !$allowed_plugins{ $plugin };
+			# Only add plugins listed in the config file.
+			next if !$forced_plugins{ $plugin };
 
 			push( @plugins, $plugin );
-			delete( $allowed_plugins{ $plugin } );
+			delete( $forced_plugins{ $plugin } );
+		}
+
+		# If plugins listed in the config file are not found on the system, don't
+		# continue.
+		if ( scalar( keys %forced_plugins ) != 0 )
+		{
+			croak sprintf(
+				"The following plugins must be installed on your system, per the "
+				. "'force_plugins' directive in your githooksrc config file: %s",
+				join( ', ', keys %forced_plugins ),
+			);
 		}
 	}
 	else
