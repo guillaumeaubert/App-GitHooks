@@ -391,7 +391,7 @@ sub ok_setup_repository
 					my $content = "[testing]\n";
 
 					# Only run specific plugins.
-					$content .= "limit_plugins = " . join( ', ', @$plugins ) . "\n"
+					$content .= "force_plugins = " . join( ', ', @$plugins ) . "\n"
 						if defined( $plugins );
 
 					# Pretend we're in an interactive terminal even if we're doing automated testing.
