@@ -682,6 +682,9 @@ sub get_all_plugins
 	{
 		my %forced_plugins =
 			map { $_ => 1 }
+			# Prepend App::GitHooks::Plugin:: to the plugin name if omitted.
+			map { $_ =~ /^App/ ? $_ : "App::GitHooks::Plugin::$_" }
+			# Split the comma-separated list.
 			split( /(?:\s+|\s*,\s*)/, $force_plugins );
 
 		foreach my $plugin ( @discovered_plugins )
