@@ -359,7 +359,7 @@ they will be ignored.
 
 =item * limit_plugins
 
-A comma-separated list of the only plugins that will be executed during tests.
+Deprecated. Use C<force_plugins> instead.
 
 =item * force_interactive
 
@@ -663,9 +663,19 @@ sub get_all_plugins
 	# Module::Pluggable.
 	my @discovered_plugins = __PACKAGE__->_search_plugins();
 
+	# Warn about deprecated 'limit_plugins' config option.
+	my $limit_plugins = $config->get( 'testing', 'limit_plugins' );
+	if ( defined( $limit_plugins ) )
+	{
+		carp "The configuration option 'limit_plugins' under the [testing] section "
+			. "is deprecated, please switch to using 'force_plugins' under the general "
+			. "configuration section as soon as possible";
+	}
+
 	# If the environment restricts the list of plugins to run, we use that.
 	# Otherwise, we exclude test plugins.
 	my $force_plugins = $config->get( '_', 'force_plugins' )
+		// $limit_plugins
 		// '';
 	my @plugins = ();
 	if ( $force_plugins =~ /\w/ )
