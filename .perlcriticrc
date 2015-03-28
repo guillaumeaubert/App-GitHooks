@@ -15,3 +15,7 @@ minimum_regex_length_to_complain_about = 20
 
 # Returning undef makes it easier to enforce explicit return types in APIs.
 [-Subroutines::ProhibitExplicitReturnUndef]
+
+# Allow slightly longer if-elsif-else chains.
+[ControlStructures::ProhibitCascadingIfElse]
+max_elsif = 3
