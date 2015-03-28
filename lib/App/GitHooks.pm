@@ -267,15 +267,34 @@ C<[section_1]> section).
 =head2 Configuration file locations
 
 L<App::GitHooks> supports setting custom options by creating one of the
-following files:
+following files, which are searched in descending order of preference:
 
 =over 4
+
+=item *
+
+A file of any name anywhere on your system, if you set the environment variable
+C<GITHOOKSRC_FORCE> to its path.
+
+Note that you should normally use C<GITHOOKSRC>. This option is provided mostly
+for testing purposes, when configuration options for testing in a reliable
+manner are of the utmost importance and take precedence over any
+repository-specific settings.
 
 =item *
 
 A C<.githooksrc> file at the root of the git repository.
 
 The settings will then only apply to that repository.
+
+=item *
+
+A file of any name anywhere on your system, if you set the environment variable
+C<GITHOOKSRC> to its path.
+
+Note that C<.githooksrc> files at the top of a repository or in a user's home
+directory will take precedence over a file specified by the C<GITHOOKSRC>
+environment variable.
 
 =item *
 
@@ -287,14 +306,6 @@ configuration file will take precedence over the one defined in the home
 directory of the current user (as it is presumably more specific). Auto-merge
 of options across multiple C<.githooksrc> files in an inheritance fashion is
 not currently supported.
-
-=item *
-
-A file of any name anywhere on your system, if you set the environment variable C<GITHOOKSRC> to its path.
-
-Note that C<.githooksrc> files at the top of a repository or in a user's home
-directory will take precedence over a file specified by the C<GITHOOKSRC>
-environment variable.
 
 =back
 
