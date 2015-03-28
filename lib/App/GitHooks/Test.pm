@@ -388,24 +388,32 @@ sub ok_setup_repository
 			lives_ok(
 				sub
 				{
-					my $content = "[testing]\n";
+					my $content = "";
 
-					# Only run specific plugins.
-					$content .= "force_plugins = " . join( ', ', @$plugins ) . "\n"
-						if defined( $plugins );
+					# Main section.
+					{
+						# Only run specific plugins.
+						$content .= "force_plugins = " . join( ', ', @$plugins ) . "\n"
+							if defined( $plugins );
+					}
 
-					# Pretend we're in an interactive terminal even if we're doing automated testing.
-					$content .= "force_interactive = 1\n";
+					# Testing section.
+					{
+						$content .= "[testing]\n";
 
-					# Disable color, to make it easier to match output.
-					$content .= "force_use_colors = 0\n";
+						# Pretend we're in an interactive terminal even if we're doing automated testing.
+						$content .= "force_interactive = 1\n";
 
-					# Disable utf-8 characters, to make it easier to match output.
-					$content .= "force_is_utf8 = 0\n";
+						# Disable color, to make it easier to match output.
+						$content .= "force_use_colors = 0\n";
 
-					# Just have commit-msg exit with the result of the checks, instead
-					# of forcing to correct the issue.
-					$content .= "commit_msg_no_edit = 1\n";
+						# Disable utf-8 characters, to make it easier to match output.
+						$content .= "force_is_utf8 = 0\n";
+
+						# Just have commit-msg exit with the result of the checks, instead
+						# of forcing to correct the issue.
+						$content .= "commit_msg_no_edit = 1\n";
+					}
 
 					# Add any custom config passed.
 					$content .= $config;
