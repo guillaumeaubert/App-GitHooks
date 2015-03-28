@@ -47,9 +47,13 @@ Arguments:
 
 =over 4
 
-=item * file
+=item * file I<(optional)>
 
-An optional path to a config file to load into the object.
+A path to a config file to load into the object.
+
+=item * source I<(optional)>
+
+How the path of the config file to use was determined.
 
 =back
 
@@ -59,12 +63,17 @@ sub new
 {
 	my ( $class, %args ) = @_;
 	my $file = delete( $args{'file'} );
+	my $source = delete( $args{'source'} );
 
 	my $self = defined( $file )
 		? Config::Tiny->read( $file )
 		: Config::Tiny->new();
 
 	bless( $self, $class );
+
+	# Store meta-information for future reference.
+	$self->{'__source'} = $source;
+	$self->{'__path'} = $file;
 
 	return $self;
 }
