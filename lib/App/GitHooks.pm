@@ -760,8 +760,14 @@ sub get_config
 	if ( !defined( $self->{'config'} ) )
 	{
 		my $config_file;
+		# For testing purposes, provide a way to enforce a specific .githooksrc
+		# file regardless of how anything else is set up on the machine.
+		if ( defined( $ENV{'GITHOOKSRC_FORCE'} ) && ( -e $ENV{'GITHOOKSRC_FORCE'} ) )
+		{
+			$config_file = $ENV{'GITHOOKSRC_FORCE'};
+		}
 		# First, use repository-specific githooksrc files.
-		if ( -e '.githooksrc' )
+		elsif ( -e '.githooksrc' )
 		{
 			$config_file = '.githooksrc';
 		}
