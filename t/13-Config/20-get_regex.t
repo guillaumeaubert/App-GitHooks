@@ -15,6 +15,9 @@ use Test::More;
 # Require git.
 has_git( '1.7.4.1' );
 
+# Regex test key.
+my $key_name = 'regex';
+
 # List of tests to run.
 my $tests =
 [
@@ -25,22 +28,22 @@ my $tests =
 	},
 	{
 		name     => 'Empty value.',
-		config   => "regex =\n",
+		config   => "$key_name =\n",
 		expected => undef,
 	},
 	{
 		name     => 'Value is not a regex.',
-		config   => "regex = test\n",
-		throws   => q|The key regex in the section _ is not a regex, use /.../ to delimit your expression|,
+		config   => "$key_name = test\n",
+		throws   => "The key $key_name in the section _ is not a regex, use /.../ to delimit your expression",
 	},
 	{
 		name     => 'Value has unescaped slash delimiters.',
-		config   => "regex = /test/test/\n",
-		throws   => q|The key regex in the section _ does not specify a valid regex, it has unescaped '/' delimiters inside it|,
+		config   => "$key_name = /test/test/\n",
+		throws   => "The key $key_name in the section _ does not specify a valid regex, it has unescaped '/' delimiters inside it",
 	},
 	{
 		name     => 'Valid regex.',
-		config   => "regex = /test/\n",
+		config   => "$key_name = /test/\n",
 		expected => 'test',
 	},
 ];
@@ -108,7 +111,7 @@ foreach my $test ( @$tests )
 				throws_ok(
 					sub
 					{
-						$regex = $config->get_regex('_', 'regex');
+						$regex = $config->get_regex( '_', $key_name );
 					},
 					qr/\Q$test->{'throws'}\E/,
 					'regex() throws the expected error.',
@@ -119,7 +122,7 @@ foreach my $test ( @$tests )
 				lives_ok(
 					sub
 					{
-						$regex = $config->get_regex('_', 'regex');
+						$regex = $config->get_regex( '_', $key_name );
 					},
 					'Retrieve the regex value.',
 				);
