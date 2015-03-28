@@ -760,32 +760,37 @@ sub get_config
 	if ( !defined( $self->{'config'} ) )
 	{
 		my $config_file;
+		my $config_source;
 		# For testing purposes, provide a way to enforce a specific .githooksrc
 		# file regardless of how anything else is set up on the machine.
 		if ( defined( $ENV{'GITHOOKSRC_FORCE'} ) && ( -e $ENV{'GITHOOKSRC_FORCE'} ) )
 		{
+			$config_source = 'GITHOOKSRC_FORCE environment variable';
 			$config_file = $ENV{'GITHOOKSRC_FORCE'};
 		}
 		# First, use repository-specific githooksrc files.
 		elsif ( -e '.githooksrc' )
 		{
+			$config_source = '.githooksrc at the root of the repository';
 			$config_file = '.githooksrc';
 		}
 		# Fall back on the GITHOOKSRC variable.
 		elsif ( defined( $ENV{'GITHOOKSRC'} ) && ( -e $ENV{'GITHOOKSRC'} ) )
 		{
+			$config_source = 'GITHOOKSRC environment variable';
 			$config_file = $ENV{'GITHOOKSRC'};
 		}
 		# Fall back on the home directory of the user.
 		elsif ( defined( $ENV{'HOME'} ) && ( -e $ENV{'HOME'} . '/.githooksrc' ) )
 		{
+			$config_source = '.githooksrc in the home directory';
 			$config_file = $ENV{'HOME'} . '/.githooksrc';
 		}
 
 		$self->{'config'} = App::GitHooks::Config->new(
 			defined( $config_file )
-				? ( file => $config_file )
-				: ()
+				? ( file => $config_file, source => $config_source )
+				: (),
 		);
 	}
 
