@@ -107,11 +107,11 @@ foreach my $test ( @$tests )
 				'Close githooks config file.',
 			);
 
-			note( "GITHOOKSRC will be set to $filename." );
+			note( "GITHOOKSRC_FORCE will be set to $filename." );
 
 			ok(
-				local( $ENV{'GITHOOKSRC'} ) = $filename,
-				'Set the environment variable GITHOOKSRC to point to the test config.',
+				local( $ENV{'GITHOOKSRC_FORCE'} ) = $filename,
+				'Set the environment variable GITHOOKSRC_FORCE to point to the test config.',
 			);
 
 			ok(
