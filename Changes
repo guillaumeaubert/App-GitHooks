@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.4.0  2015-03-27
+        - Implement "force_plugins" configuration option (GH-18).
+
 v1.3.0  2015-03-25
         - Add "list" command to "githooks" to display available plugins for
           each git hook (GH-8).
