@@ -224,6 +224,38 @@ sub version
 {
 	print "Using App::GitHooks version $App::GitHooks::VERSION.\n";
 
+	# Instantiate an object, but we're not using any hook-dependent features
+	# (yet) in this function, so any hook name will do here.
+	my $app = App::GitHooks->new(
+		name => 'pre-commit',
+	);
+
+	# Retrieve all the plugins available.
+	my @plugins =
+		sort keys
+		(
+			%{{
+				map { $_ => 1 }
+				map { @$_ }
+				values %{ $app->get_all_plugins() || {} }
+			}}
+		);
+
+	# Display plugin versions.
+	if ( scalar( @plugins ) != 0 )
+	{
+		print "\n";
+		print "Plugins:\n";
+		foreach my $plugin_name ( @plugins )
+		{
+			printf(
+				"  - %s: v%s\n",
+				$plugin_name,
+				$plugin_name->VERSION(),
+			);
+		}
+	}
+
 	return;
 }
 
