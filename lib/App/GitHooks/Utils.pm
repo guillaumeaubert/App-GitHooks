@@ -95,11 +95,12 @@ sub get_project_prefix_regex
 }
 
 
-=head2 get_ticket_id_regex()
+=head2 get_ticket_id_from_commit_regex()
 
-Return a regex that will extract a ticket ID from a commit message, if it exists.
+Return a regex that will extract a ticket ID from a commit message, if it
+exists.
 
-	my $ticket_id_regex = App::GitHooks::Utils::get_ticket_id_regex( $app );
+	my $ticket_id_regex = App::GitHooks::Utils::get_ticket_id_from_commit_regex( $app );
 
 Arguments:
 
@@ -113,10 +114,9 @@ An C<App::GitHooks> instance.
 
 =cut
 
-sub get_ticket_id_regex
+sub get_ticket_id_from_commit_regex
 {
 	my ( $app ) = @_;
-
 	my $config = $app->get_config();
 
 	# Retrieve the regular expression from the config or use a default.
