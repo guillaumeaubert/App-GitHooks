@@ -21,7 +21,7 @@ my $tests =
 	{
 		name     => 'No value defined in the config, fall back on the default.',
 		config   => "project_prefixes = OPS DEV\n",
-		expected => '^((?:OPS|DEV)-\d+|--)\: ',
+		expected => '^((?:OPS|DEV)-\d+|--)\: ?',
 	},
 	{
 		name     => 'Value defined in the config.',
