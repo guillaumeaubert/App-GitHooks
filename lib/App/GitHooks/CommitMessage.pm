@@ -190,10 +190,8 @@ sub get_ticket_id
 
 	if ( !defined( $self->{'ticket_id'} ) )
 	{
-		# Prepare regex to extract the ticket ID.
-		my $project_prefix_regex = App::GitHooks::Utils::get_project_prefix_regex( $app );
-		my $ticket_regex = $app->get_config()->get_regex( '_', 'extract_ticket_id_from_commit' ) // '^($project_prefixes-\d+|--)\: ';
-		$ticket_regex =~ s/\$project_prefixes/$project_prefix_regex/g;
+		# Get regex to extract the ticket ID.
+		my $ticket_regex = App::GitHooks::Utils::get_ticket_id_from_commit_regex( $app );
 
 		# Parse the first line of the commit message.
 		my $summary = $self->get_summary();
