@@ -118,7 +118,12 @@ sub get_ticket_id_regex
 	my ( $app ) = @_;
 
 	my $config = $app->get_config();
-	my $ticket_regex = $config->get_regex( '_', 'extract_ticket_id_from_branch' ) // '^($project_prefixes)-?(\d+)';
+
+	# Retrieve the regular expression from the config or use a default.
+	my $ticket_regex = $app->get_config()->get_regex( '_', 'extract_ticket_id_from_commit' )
+		// '^($project_prefixes-\d+|--)\: ';
+
+	# Replace the list of project prefixes if it is mentioned in the regex.
 	my $project_prefix_regex = get_project_prefix_regex( $app );
 	$ticket_regex =~ s/\$project_prefixes/$project_prefix_regex/g;
 
