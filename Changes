@@ -1,5 +1,9 @@
 Revision history for App-GitHooks
 
+v1.5.1  2015-03-29
+        - Account for git-commit trimming whitespace in commit messages
+          (GH-20).
+
 v1.5.0  2015-03-29
         - Rename App::GitHooks::Utils::get_ticket_id() to
           App::GitHooks::Utils::get_ticket_id_from_commit_regex() and fix the
