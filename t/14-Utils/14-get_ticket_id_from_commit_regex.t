@@ -21,12 +21,12 @@ my $tests =
 	{
 		name     => 'No value defined in the config, fall back on the default.',
 		config   => "project_prefixes = OPS DEV\n",
-		expected => '^((?:OPS|DEV))-?(\d+)',
+		expected => '^((?:OPS|DEV)-\d+|--)\: ',
 	},
 	{
 		name     => 'Value defined in the config.',
 		config   => "project_prefixes = OPS DEV\n"
-			. 'extract_ticket_id_from_branch = /^($project_prefixes)_(\d+)/' . "\n",
+			. 'extract_ticket_id_from_commit = /^($project_prefixes)_(\d+)/' . "\n",
 		expected => '^((?:OPS|DEV))_(\d+)',
 	},
 ];
@@ -37,7 +37,7 @@ plan( tests => scalar( @$tests + 1 ) );
 # Make sure the function exists before we start.
 can_ok(
 	'App::GitHooks::Utils',
-	'get_ticket_id_regex',
+	'get_ticket_id_from_commit_regex',
 );
 
 # Run each test in a subtest.
@@ -85,7 +85,7 @@ foreach my $test ( @$tests )
 			lives_ok(
 				sub
 				{
-					$ticket_id_regex = App::GitHooks::Utils::get_ticket_id_regex( $app );
+					$ticket_id_regex = App::GitHooks::Utils::get_ticket_id_from_commit_regex( $app );
 				},
 				'Retrieve the ticket ID regex.',
 			);
