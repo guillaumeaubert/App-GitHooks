@@ -1,5 +1,10 @@
 Revision history for App-GitHooks
 
+v1.5.0  2015-03-29
+        - Rename App::GitHooks::Utils::get_ticket_id() to
+          App::GitHooks::Utils::get_ticket_id_from_commit_regex() and fix the
+          function to match its documentation (GH-19).
+
 v1.4.0  2015-03-27
         - Implement "force_plugins" configuration option (GH-18).
 

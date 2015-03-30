@@ -34,11 +34,11 @@ App::GitHooks::Plugin::Test::PrintSTDERR - A test plugin that allows printing a 
 
 =head1 VERSION
 
-Version 1.4.0
+Version 1.5.0
 
 =cut
 
-our $VERSION = '1.4.0';
+our $VERSION = '1.5.0';
 
 our $HOOK_REPLIES;
 
