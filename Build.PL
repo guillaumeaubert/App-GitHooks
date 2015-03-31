@@ -43,7 +43,6 @@ my $builder = $class->new(
 	{
 		'Capture::Tiny'         => 0,
 		'File::Spec'            => 0,
-		'File::Temp'            => 0,
 		'Git::Repository'       => 0,
 		'Scalar::Util'          => 0,
 		'Test::Compile'         => 1.001000,
@@ -67,6 +66,7 @@ my $builder = $class->new(
 		'Data::Section'         => 0,
 		'Data::Validate::Type'  => 0,
 		'File::Basename'        => 0,
+		'File::Temp'            => 0,
 		'Path::Tiny'            => 0,
 		'File::Spec'            => 0,
 		'Getopt::Long'          => 0,

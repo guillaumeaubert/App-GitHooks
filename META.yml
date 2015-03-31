@@ -5,7 +5,6 @@ author:
 build_requires:
   Capture::Tiny: '0'
   File::Spec: '0'
-  File::Temp: '0'
   Git::Repository: '0'
   Scalar::Util: '0'
   Test::Compile: '1.001'
@@ -120,6 +119,7 @@ requires:
   Data::Validate::Type: '0'
   File::Basename: '0'
   File::Spec: '0'
+  File::Temp: '0'
   Getopt::Long: '0'
   Git::Repository: '0'
   Module::Pluggable: '0'
