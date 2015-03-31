@@ -1,6 +1,9 @@
 # Change default severity to harsh.
 severity = harsh
 
+# Include the policy name in the message.
+verbose = * %f: %m at line %l column %c.\n  Reference: %e.\n  Severity: %s.\n  Policy: %p.\n
+
 # Use only core PerlCritic policies.
 # This prevents tests from failing if the tester / installer has non-standard
 # additional PerlCritic policies.
