@@ -6,6 +6,7 @@ use warnings;
 # Internal dependencies.
 use App::GitHooks::Constants qw( :HOOK_EXIT_CODES );
 use App::GitHooks::Hook;
+use App::GitHooks::Test;
 use App::GitHooks;
 
 # External dependencies.
@@ -17,12 +18,15 @@ use Test::More;
 
 # Require git.
 has_git( '1.7.4.1' );
-plan( tests => 5 );
+plan( tests => 6 );
 
 can_ok(
 	'App::GitHooks::Hook',
 	'run',
 );
+
+# Force a clean githooks config to ensure repeatable test conditions.
+App::GitHooks::Test::ok_reset_githooksrc();
 
 ok(
 	push( @{ $App::GitHooks::HOOK_NAMES }, 'test-hook-name' ),

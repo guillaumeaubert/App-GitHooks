@@ -25,6 +25,7 @@ use strict;
 use warnings;
 
 use App::GitHooks;
+use App::GitHooks::Test;
 use Capture::Tiny;
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
@@ -34,7 +35,10 @@ use Test::More;
 
 # Require git.
 has_git( '1.7.4.1' );
-plan( tests => 2 );
+plan( tests => 3 );
+
+# Force a clean githooks config to ensure repeatable test conditions.
+App::GitHooks::Test::ok_reset_githooksrc();
 
 my $exit_status;
 my $stderr = Capture::Tiny::capture_stderr(
