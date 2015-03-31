@@ -13,6 +13,7 @@ use Cwd;
 use Data::Section -setup;
 use Data::Validate::Type;
 use File::Spec;
+use File::Temp;
 use Path::Tiny qw();
 use Test::Exception;
 use Test::Git;
@@ -428,6 +429,71 @@ sub ok_setup_repository
 	);
 
 	return $repository;
+}
+
+
+=head2 ok_reset_githooksrc()
+
+Ensures that an empty C<.githooksrc> is used.
+
+	ok_reset_githooksrc();
+
+Arguments:
+
+=over 4
+
+=item * content I<(optional)>
+
+Content for the C<.githooksrc> file.
+
+By default, this function generates an empty C<.githooksrc> file, which has the
+effect of using the defaults of L<App::GitHooks>.
+
+=back
+
+=cut
+
+sub ok_reset_githooksrc
+{
+	my ( %args ) = @_;
+	my $content = delete( $args{'content'} ) // '';
+
+	croak 'Invalid argument(s): ' . join( ', ', keys %args )
+		if scalar( keys %args ) != 0;
+
+	subtest(
+		'Set up .githooksrc file.',
+		sub
+		{
+			plan( tests => 4 );
+
+			ok(
+				my ( $file_handle, $filename ) = File::Temp::tempfile(),
+				'Create a temporary file to store the githooks config.',
+			);
+
+			ok(
+				( print $file_handle $content ),
+				'Write the githooks config.',
+			);
+
+			ok(
+				close( $file_handle ),
+				'Close githooks config.',
+			);
+
+			note( "GITHOOKSRC_FORCE will be set to $filename." );
+
+			# Note: we need to make a global change to %ENV here, so that it
+			# propagates to the caller's scope.
+			ok(
+				$ENV{'GITHOOKSRC_FORCE'} = $filename, ## no critic (Variables::RequireLocalizedPunctuationVars)
+				'Set the environment variable GITHOOKSRC_FORCE to point to the new config.',
+			);
+		}
+	);
+
+	return;
 }
 
 
