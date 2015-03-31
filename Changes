@@ -1,5 +1,13 @@
 Revision history for App-GitHooks
 
+v1.6.0  2015-03-30
+        - Added App::GitHooks::Test::ok_reset_githooksrc() to ensure that tests
+          can run without interference.
+        - Refactored tests to use ok_reset_githooksrc().
+        - Added .githooksrc to manage App::GitHooks' commits with App::GitHooks
+          (GH-21).
+        - Implement support for warnings in the pre-commit hook (GH-13).
+
 v1.5.1  2015-03-29
         - Account for git-commit trimming whitespace in commit messages
           (GH-20).

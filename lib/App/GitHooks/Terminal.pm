@@ -16,11 +16,11 @@ App::GitHooks::Terminal - Information about the current terminal in which App::G
 
 =head1 VERSION
 
-Version 1.5.1
+Version 1.6.0
 
 =cut
 
-our $VERSION = '1.5.1';
+our $VERSION = '1.6.0';
 
 
 =head1 SYNOPSIS
