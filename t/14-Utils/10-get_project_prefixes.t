@@ -4,8 +4,8 @@ use strict;
 use warnings;
 
 use App::GitHooks;
+use App::GitHooks::Test;
 use App::GitHooks::Utils;
-use File::Temp;
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
 use Test::Git;
@@ -56,28 +56,11 @@ foreach my $test ( @$tests )
 		$test->{'name'},
 		sub
 		{
-			plan( tests => 7 );
+			plan( tests => 4 );
 
-			ok(
-				my ( $file_handle, $filename ) = File::Temp::tempfile(),
-				'Create a temporary file to store the githooks config.',
-			);
-
-			ok(
-				( print $file_handle $test->{'config'} ),
-				'Write the test githooks config.',
-			);
-
-			ok(
-				close( $file_handle ),
-				'Close githooks config file.',
-			);
-
-			note( "GITHOOKSRC_FORCE will be set to $filename." );
-
-			ok(
-				local( $ENV{'GITHOOKSRC_FORCE'} ) = $filename,
-				'Set the environment variable GITHOOKSRC_FORCE to point to the test config.',
+			# Set up githooks config.
+			App::GitHooks::Test::ok_reset_githooksrc(
+				content => $test->{'config'},
 			);
 
 			ok(
