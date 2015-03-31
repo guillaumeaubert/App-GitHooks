@@ -153,6 +153,7 @@ sub run_all_tests
 	if ( $has_warnings )
 	{
 		# If we have a user, stop and ask if we should continue with the commit.
+		# uncoverable branch true
 		if ( $app->get_terminal()->is_interactive() )
 		{
 			print "Some warnings were found. Press <Enter> to continue committing or Ctrl-C to abort the commit.\n";
