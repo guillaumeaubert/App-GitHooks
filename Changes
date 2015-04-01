@@ -1,5 +1,10 @@
 Revision history for App-GitHooks
 
+v1.6.1  2015-03-31
+        - Fixed test that prevented upgrading App::GitHooks in situations where
+          plugins were already installed and returned a different value than
+          expected in the test.
+
 v1.6.0  2015-03-30
         - Added App::GitHooks::Test::ok_reset_githooksrc() to ensure that tests
           can run without interference.

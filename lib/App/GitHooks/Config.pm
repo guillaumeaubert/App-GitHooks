@@ -15,11 +15,11 @@ App::GitHooks::Config - Configuration manager for App::GitHooks.
 
 =head1 VERSION
 
-Version 1.6.0
+Version 1.6.1
 
 =cut
 
-our $VERSION = '1.6.0';
+our $VERSION = '1.6.1';
 
 
 =head1 SYNOPSIS
