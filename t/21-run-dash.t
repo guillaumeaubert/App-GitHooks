@@ -38,7 +38,9 @@ has_git( '1.7.4.1' );
 plan( tests => 3 );
 
 # Force a clean githooks config to ensure repeatable test conditions.
-App::GitHooks::Test::ok_reset_githooksrc();
+App::GitHooks::Test::ok_reset_githooksrc(
+	content => "force_plugins = Test\n",
+);
 
 my $exit_status;
 my $stderr = Capture::Tiny::capture_stderr(
