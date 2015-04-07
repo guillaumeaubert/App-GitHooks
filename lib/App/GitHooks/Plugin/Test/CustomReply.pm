@@ -111,6 +111,8 @@ including file-level checks for the appropriate hooks:
 
 =item run_pre_commit_file
 
+=item run_pre_push
+
 =item run_pre_rebase
 
 =item run_pre_receive

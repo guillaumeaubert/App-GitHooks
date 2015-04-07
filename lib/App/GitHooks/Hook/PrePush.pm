@@ -1,15 +1,15 @@
-package App::GitHooks::Plugin;
+package App::GitHooks::Hook::PrePush;
 
 use strict;
 use warnings;
 
-# External dependencies.
-use Carp;
+# Inherit from the base Hook class.
+use base 'App::GitHooks::Hook';
 
 
 =head1 NAME
 
-App::GitHooks::Plugin - Base class for plugins.
+App::GitHooks::Hook::PrePush - Handle the pre-push hook.
 
 
 =head1 VERSION
@@ -19,73 +19,6 @@ Version 1.6.1
 =cut
 
 our $VERSION = '1.6.1';
-
-our $SUPPORTED_SUBS =
-[
-	qw(
-		applypatch_msg
-		commit_msg
-		post_applypatch
-		post_checkout
-		post_commit
-		post_merge
-		post_receive
-		post_rewrite
-		post_update
-		pre_applypatch
-		pre_auto_gc
-		pre_commit
-		pre_commit_file
-		pre_push
-		pre_rebase
-		pre_receive
-		prepare_commit_msg
-		update
-	)
-];
-
-
-=head1 METHODS
-
-=head2 get_file_check_description()
-
-Return a description of the check performed on files by the plugin and that
-will be displayed to the user, if applicable, along with an indication of the
-success or failure of the plugin.
-
-	my $description = $plugin_class->get_file_check_description();
-
-=cut
-
-sub get_file_check_description
-{
-	croak 'You must define a get_file_check_description() subroutine in the plugin';
-}
-
-
-=head2 get_name()
-
-Return the name of the plugin. For example, for C<App::GitHooks::Plugin::Test>,
-the name will be C<Test>.
-
-	my $name = $plugin->get_name();
-
-=cut
-
-sub get_name
-{
-	my ( $class ) = @_;
-	croak 'You need to call this method on a class'
-		if !defined( $class ) || ( $class eq '' );;
-
-	my $base_path = __PACKAGE__ . '::';
-	croak "Not a valid plugin class: >$class<"
-		if $class !~ /^\Q$base_path\E/;
-
-	$class =~ s/^$base_path//;
-
-	return $class;
-}
 
 
 =head1 BUGS
@@ -100,7 +33,7 @@ your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-	perldoc App::GitHooks::Plugin
+	perldoc App::GitHooks::Hook::PrePush
 
 
 You can also look for information at:

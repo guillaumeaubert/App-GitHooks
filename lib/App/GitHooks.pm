@@ -161,6 +161,7 @@ our $HOOK_NAMES =
 		pre-applypatch
 		pre-auto-gc
 		pre-commit
+		pre-push
 		pre-rebase
 		pre-receive
 		prepare-commit-msg

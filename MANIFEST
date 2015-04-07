@@ -50,6 +50,7 @@ lib/App/GitHooks/Hook/PostUpdate.pm
 lib/App/GitHooks/Hook/PreApplypatch.pm
 lib/App/GitHooks/Hook/PreAutoGc.pm
 lib/App/GitHooks/Hook/PreCommit.pm
+lib/App/GitHooks/Hook/PrePush.pm
 lib/App/GitHooks/Hook/PreRebase.pm
 lib/App/GitHooks/Hook/PreReceive.pm
 lib/App/GitHooks/Hook/PrepareCommitMsg.pm
