@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.7.1  2015-04-07
+        - Added pre-push hook file to the hooks directory (GH-22).
+
 v1.7.0  2015-04-06
         - Implemented support for pre-push hook (GH-22).
 
