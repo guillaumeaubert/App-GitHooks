@@ -23,11 +23,11 @@ App::GitHooks::StagedChanged - Staged changes in git.
 
 =head1 VERSION
 
-Version 1.6.1
+Version 1.7.0
 
 =cut
 
-our $VERSION = '1.6.1';
+our $VERSION = '1.7.0';
 
 
 =head1 METHODS

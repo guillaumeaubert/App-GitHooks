@@ -1,5 +1,8 @@
 Revision history for App-GitHooks
 
+v1.7.0  2015-04-06
+        - Implemented support for pre-push hook (GH-22).
+
 v1.6.1  2015-03-31
         - Fixed test that prevented upgrading App::GitHooks in situations where
           plugins were already installed and returned a different value than

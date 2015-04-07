@@ -32,11 +32,11 @@ App::GitHooks::Test - Shared test functions for App::GitHooks.
 
 =head1 VERSION
 
-Version 1.6.1
+Version 1.7.0
 
 =cut
 
-our $VERSION = '1.6.1';
+our $VERSION = '1.7.0';
 
 our @EXPORT_OK = qw(
 	ok_add_file
