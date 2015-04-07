@@ -26,6 +26,7 @@ hooks/post-update
 hooks/pre-applypatch
 hooks/pre-auto-gc
 hooks/pre-commit
+hooks/pre-push
 hooks/pre-rebase
 hooks/pre-receive
 hooks/prepare-commit-msg
