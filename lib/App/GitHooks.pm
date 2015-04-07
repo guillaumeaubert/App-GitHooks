@@ -150,21 +150,21 @@ our $HOOK_NAMES =
 [
 	qw(
 		applypatch-msg
-		pre-applypatch
-		post-applypatch
-		pre-commit
-		prepare-commit-msg
 		commit-msg
-		post-commit
-		pre-rebase
+		post-applypatch
 		post-checkout
+		post-commit
 		post-merge
-		pre-receive
-		update
 		post-receive
-		post-update
-		pre-auto-gc
 		post-rewrite
+		post-update
+		pre-applypatch
+		pre-auto-gc
+		pre-commit
+		pre-rebase
+		pre-receive
+		prepare-commit-msg
+		update
 	)
 ];
 
