@@ -43,6 +43,12 @@ Arguments:
 
 An L<App::GitHooks> object.
 
+=item * stdin I<(optional)>
+
+An arrayref of lines retrieved from SDTIN.
+
+See for example the C<pre-push> hook for uses of this argument.
+
 =back
 
 =cut
