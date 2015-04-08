@@ -1,5 +1,9 @@
 Revision history for App-GitHooks
 
+v1.7.2  2015-04-08
+        - Retrieve stdin at the hook level for pre-push.
+        - Catch plugin exceptions.
+
 v1.7.1  2015-04-07
         - Added pre-push hook file to the hooks directory (GH-22).
 

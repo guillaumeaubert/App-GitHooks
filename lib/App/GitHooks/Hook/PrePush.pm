@@ -14,11 +14,11 @@ App::GitHooks::Hook::PrePush - Handle the pre-push hook.
 
 =head1 VERSION
 
-Version 1.7.1
+Version 1.7.2
 
 =cut
 
-our $VERSION = '1.7.1';
+our $VERSION = '1.7.2';
 
 
 =head1 METHODS
