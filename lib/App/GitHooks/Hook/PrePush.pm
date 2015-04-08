@@ -21,6 +21,44 @@ Version 1.7.1
 our $VERSION = '1.7.1';
 
 
+=head1 METHODS
+
+=head2 run()
+
+Run the hook handler and return an exit status to pass to git.
+
+	my $exit_status = App::GitHooks::Hook::PrePush->run(
+		app => $app,
+	);
+
+Arguments:
+
+=over 4
+
+=item * app I<(mandatory)>
+
+An App::GitHooks object.
+
+=back
+
+=cut
+
+sub run
+{
+	my ( $class, %args ) = @_;
+
+	# Retrieve stdin, which contains a list of the references being pushed.
+	# It is important to do it once for the whole hook, and then pass it to the
+	# plugins - otherwise the first plugin that reads stdin will leave it empty
+	# for the others and they won't see any changes.
+	$args{'stdin'} = [ <STDIN> ]; ## no critic (InputOutput::ProhibitExplicitStdin)
+
+	return $class->SUPER::run(
+		%args
+	);
+}
+
+
 =head1 BUGS
 
 Please report any bugs or feature requests through the web interface at

@@ -51,6 +51,7 @@ sub run
 {
 	my ( $class, %args ) = @_;
 	my $app = $args{'app'};
+	my $stdin = $args{'stdin'};
 
 	# Find all the plugins that are applicable for this hook.
 	my $plugins = $app->get_hook_plugins( $app->get_hook_name() );
@@ -71,7 +72,8 @@ sub run
 		my $return_code = try
 		{
 			return $plugin->$method(
-				app => $app,
+				app   => $app,
+				stdin => $stdin,
 			);
 		}
 		catch
