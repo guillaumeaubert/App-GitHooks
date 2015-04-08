@@ -95,6 +95,7 @@ t/17-CommitMessage/30-is_empty.t
 t/17-CommitMessage/35-has_changed.t
 t/20-run.t
 t/21-run-dash.t
+t/22-run-die.t
 t/40-Plugin/00-load.t
 t/40-Plugin/03-get_file_check_description.t
 t/40-Plugin/20-get_name.t
