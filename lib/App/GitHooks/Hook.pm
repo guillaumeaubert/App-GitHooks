@@ -5,6 +5,7 @@ use warnings;
 
 # External dependencies.
 use Carp;
+use Try::Tiny;
 
 # Internal dependencies.
 use App::GitHooks::Constants qw( :HOOK_EXIT_CODES :PLUGIN_RETURN_CODES );
@@ -64,9 +65,23 @@ sub run
 		my $method = 'run_' . $app->get_hook_name();
 		$method =~ s/-/_/g;
 
-		my $return_code = $plugin->$method(
-			app => $app,
-		);
+		# Run the plugin method corresponding to this hook.
+		# If the plugin throws an exception, print the error message and consider
+		# the return code to be a failure.
+		my $return_code = try
+		{
+			return $plugin->$method(
+				app => $app,
+			);
+		}
+		catch
+		{
+			chomp( $_ );
+			my $failure_character = $app->get_failure_character();
+			print $app->color( 'red', "$failure_character $_\n" );
+			return $PLUGIN_RETURN_FAILED;
+		};
+
 		$has_errors = 1
 			if $return_code == $PLUGIN_RETURN_FAILED;
 	}
