@@ -88,15 +88,37 @@ sub get_app
 
 =head2 verify()
 
-Verify the changes that are being committed, and return information on
-whether the checks passed or failed.
+Verify the changes that are being committed.
 
-# TODO: update documentation.
+This method returns an array composed of:
 
-	my $checks_pass = $staged_changes->verify(
+=over 4
+
+=item * A boolean to indicate whether the checks passed or failed.
+
+=item * A boolean to indicate whether any warnings were displayed.
+
+=back
+
+	( $allow_commit, $has_warnings ) = $staged_changes->verify(
 		use_colors   => $use_colors, # default 1
 		app          => $app,
 	);
+
+Arguments:
+
+=over 4
+
+=item * use_colors I<(optional)>
+
+Indicate whether colors should be used when displaying the output of the checks
+performed. Defaults to using colors (C<1>).
+
+=item * app I<(mandatory)>
+
+An C<App::GitHook> instance.
+
+=back
 
 =cut
 
@@ -118,12 +140,19 @@ sub verify
 
 =head2 check_changed_files()
 
-Verify that the files changed pass various rules. Return a boolean indicating
-if all the files pass (true) or fail (false) the tests.
+Verify that the files changed pass various rules.
 
-# TODO: update documentation.
+This method returns an array composed of:
 
-	my ( $all_files_pass, $warnings ) = check_changed_files();
+=over 4
+
+=item * A boolean to indicate whether the files passed the checks.
+
+=item * A boolean to indicate whether any warnings were displayed.
+
+=back
+
+	my ( $all_files_pass, $has_warnings ) = check_changed_files();
 
 =cut
 
@@ -176,9 +205,44 @@ sub check_changed_files
 
 Verify that that a given file passes all the verification rules.
 
-# TODO: update documentation.
+This method returns an array composed of:
 
-	my ( $file_passes, $warnings ) = check_file( $file );
+=over 4
+
+=item * A boolean to indicate whether the file passed all the checks.
+
+=item * A boolean to indicate whether any warnings were displayed.
+
+=back
+
+	my ( $file_passes, $has_warnings ) = check_file(
+		count      => $count,
+		file       => $file,
+		git_action => $git_action,
+		total      => $total,
+	);
+
+Arguments:
+
+=over 4
+
+=item * count I<(mandatory)>
+
+The number of the file in the list of files to check.
+
+=item * file I<(mandatory)>
+
+The path of the file to check.
+
+=item * git_action I<(mandatory)>
+
+The action performed by git on the file (add, delete, etc).
+
+=item * total I<(mandatory)>
+
+The total number of files to check as part of this git hooks instance.
+
+=back
 
 =cut
 
