@@ -100,36 +100,15 @@ This method returns an array composed of:
 
 =back
 
-	( $allow_commit, $has_warnings ) = $staged_changes->verify(
-		use_colors   => $use_colors, # default 1
-		app          => $app,
-	);
-
-Arguments:
-
-=over 4
-
-=item * use_colors I<(optional)>
-
-Indicate whether colors should be used when displaying the output of the checks
-performed. Defaults to using colors (C<1>).
-
-=item * app I<(mandatory)>
-
-An C<App::GitHook> instance.
-
-=back
+	( $allow_commit, $has_warnings ) = $staged_changes->verify();
 
 =cut
 
 sub verify
 {
 	my ( $self, %args ) = @_;
-	my $app = delete( $args{'app'} );
-	my $failure_character = $app->get_failure_character();
-	my $repository = $app->get_repository();
-	$app->use_colors( $args{'use_colors'} )
-		if defined( $args{'use_colors'} );
+	croak 'Invalid argument(s): ' . join( ', ', keys %args )
+		if scalar( keys %args ) != 0;
 
 	$self->analyze_changes();
 

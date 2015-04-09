@@ -140,9 +140,9 @@ sub run_all_tests
 	# Check the changed files individually with plugins that support
 	# "pre-commit-file".
 	{
-		my ( $file_checks, $file_warnings ) = $app->get_staged_changes()->verify(
-			app => $app,
-		);
+		my ( $file_checks, $file_warnings ) = $app
+			->get_staged_changes()
+			->verify();
 		$tests_success = 0
 			if !$file_checks;
 		$has_warnings = 1
