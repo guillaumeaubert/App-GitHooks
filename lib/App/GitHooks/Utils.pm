@@ -19,11 +19,11 @@ App::GitHooks::Utils - Support functions for App::GitHooks and its plugins.
 
 =head1 VERSION
 
-Version 1.7.2
+Version 1.7.3
 
 =cut
 
-our $VERSION = '1.7.2';
+our $VERSION = '1.7.3';
 
 
 =head2 get_project_prefixes()

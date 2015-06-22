@@ -1,5 +1,9 @@
 Revision history for App-GitHooks
 
+v1.7.3  2015-06-22
+        - Remove relative path include in ./bin/githooks (GH-25).
+        - Minor code and documentation cleanup.
+
 v1.7.2  2015-04-08
         - Retrieve stdin at the hook level for pre-push.
         - Catch plugin exceptions.

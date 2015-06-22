@@ -14,11 +14,11 @@ App::GitHooks::Hook::PreRebase - Handle the pre-rebase hook.
 
 =head1 VERSION
 
-Version 1.7.2
+Version 1.7.3
 
 =cut
 
-our $VERSION = '1.7.2';
+our $VERSION = '1.7.3';
 
 
 =head1 BUGS
