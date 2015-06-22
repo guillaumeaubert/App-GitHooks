@@ -3,10 +3,6 @@
 use strict;
 use warnings;
 
-# Use ./lib/ to be able to run this command line utility when checking out the
-# repository.
-use lib './lib/';
-
 # External dependencies.
 use App::GitHooks;
 use Cwd qw();
