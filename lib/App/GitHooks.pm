@@ -969,6 +969,30 @@ sub get_repository
 }
 
 
+=head2 get_remote_name()
+
+Get the name of the repository.
+
+	my $remote_name = $app->get_remote_name();
+
+=cut
+
+sub get_remote_name
+{
+	my ( $app ) = @_;
+	my $repository = $app->get_repository();
+
+	# Retrieve the remote path.
+	my $remote = $repository->run( qw( config --get remote.origin.url ) ) // '';
+
+	# Extract the remote name.
+	my ( $remote_name ) = ( $remote =~ /\/(.*?)\.git$/i );
+	$remote_name //= '(no remote found)';
+
+	return $remote_name;
+}
+
+
 =head2 get_hook_name
 
 Return the name of the git hook that called the current instance.
