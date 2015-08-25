@@ -26,6 +26,8 @@ Version 1.7.3
 our $VERSION = '1.7.3';
 
 
+=head1 FUNCTIONS
+
 =head2 get_project_prefixes()
 
 Get an arrayref of valid project prefixes.
