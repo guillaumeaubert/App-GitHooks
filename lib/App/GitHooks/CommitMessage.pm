@@ -5,10 +5,10 @@ use warnings;
 
 # External dependencies.
 use Carp;
+use Data::Validate::Type;
 
 # Internal dependencies.
 use App::GitHooks::Utils;
-use Data::Validate::Type;
 
 
 =head1 NAME
