@@ -78,6 +78,12 @@ sub new
 	return $self;
 }
 
+sub _explicit_plugins {
+    my $self = shift;
+    
+    $self->{'_'}{force_plugins} = join ',', grep { !/^_/ } keys %$self
+        if $self->{'_'}{explicit_plugins};
+}
 
 =head2 get()
 
@@ -136,6 +142,25 @@ sub get_regex
 		if $regex =~ /(?<!\\)\//;
 
 	return $regex;
+}
+
+
+sub merge {
+    my( $self, $to_merge ) = @_;
+
+    # empty config? the merged result is $to_merge itself
+    return $to_merge unless $self->{'__source'};
+
+    $self->{'__source'} .= ' merged with ' . $to_merge->{'__source'};
+
+    while( my( $key, $value ) = each %$to_merge ) {
+        next unless ref $value;  # only sections
+        $self->{$key} = $value;
+    }
+
+    $self->_explicit_plugins; # rebuild the list, if needed
+
+    return $self;
 }
 
 
