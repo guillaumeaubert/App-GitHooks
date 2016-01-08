@@ -362,6 +362,27 @@ they will be ignored.
 
 	force_plugins = App::GitHooks::Plugin::ValidatePODFormat, App::GitHooks::Plugin::RequireCommitMessage
 
+=item * explicit_plugins
+
+If present and set to a C<true> value, the value of C<force_plugins> will be
+derived from the plugin sections present in the configuration file. 
+
+For example:
+
+    explicit_plugins=1
+
+    [RequireTicketID]
+
+    [ValidatePODFormat]
+
+is equivalent to
+
+    force_plugins=RequireTicketID, ValidatePODFormat
+
+    [RequireTicketID]
+
+    [ValidatePODFormat]
+
 =back
 
 
