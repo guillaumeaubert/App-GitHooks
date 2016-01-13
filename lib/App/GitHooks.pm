@@ -78,7 +78,7 @@ Install this distribution (with cpanm or your preferred CPAN client):
 
 =item 2.
 
-Install the plugins you are interested in (with cpanmor your prefered CPAN
+Install the plugins you are interested in (with cpanm or your prefered CPAN
 client), as C<App::GitHooks> does not bundle them. See the list of plugins
 below, but for example:
 
