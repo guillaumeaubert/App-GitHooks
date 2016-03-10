@@ -4,6 +4,7 @@ App-GitHooks
 [![Build Status](https://travis-ci.org/guillaumeaubert/App-GitHooks.svg?branch=master)](https://travis-ci.org/guillaumeaubert/App-GitHooks)
 [![Coverage Status](https://coveralls.io/repos/guillaumeaubert/App-GitHooks/badge.svg?branch=master)](https://coveralls.io/r/guillaumeaubert/App-GitHooks?branch=master)
 [![CPAN](https://img.shields.io/cpan/v/App-GitHooks.svg)](https://metacpan.org/release/App-GitHooks)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 
 `App::GitHooks` is an extensible and easy to configure git hooks framework that
 supports many plugins.
