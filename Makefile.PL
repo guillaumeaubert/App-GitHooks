@@ -24,6 +24,7 @@ WriteMakefile
                    'Try::Tiny' => 0,
                    'Getopt::Long' => 0,
                    'Test::Git' => 0,
+                   'Test::Requires::Git' => 1.005,
                    'Test::Exception' => 0,
                    'Term::ANSIColor' => 0,
                    'Test::FailWarnings' => 0,

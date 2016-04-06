@@ -8,12 +8,12 @@ use App::GitHooks::Test;
 use App::GitHooks::Utils;
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
-use Test::Git;
+use Test::Requires::Git;
 use Test::More;
 
 
 # Require git.
-has_git( '1.7.4.1' );
+test_requires_git( '1.7.4.1' );
 
 # List of tests to run.
 my $tests =
