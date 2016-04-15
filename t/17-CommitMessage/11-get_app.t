@@ -7,12 +7,12 @@ use App::GitHooks::CommitMessage;
 use Scalar::Util qw();
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
-use Test::Git;
+use Test::Requires::Git;
 use Test::More;
 
 
 # Require git.
-has_git( '1.7.4.1' );
+test_requires_git( '1.7.4.1' );
 plan( tests => 4 );
 
 ok(

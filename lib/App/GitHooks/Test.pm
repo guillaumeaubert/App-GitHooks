@@ -17,6 +17,7 @@ use File::Temp;
 use Path::Tiny qw();
 use Test::Exception;
 use Test::Git;
+use Test::Requires::Git;
 use Test::More;
 
 # Internal dependencies.
@@ -557,7 +558,7 @@ sub test_hook
 		if $hook_name !~ /^[\w-]+$/;
 
 	# Bail out if Git isn't available.
-	has_git( '1.7.4.1' );
+	test_requires_git( '1.7.4.1' );
 	plan( tests => scalar( @$tests ) );
 
 	foreach my $test ( @$tests )

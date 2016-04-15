@@ -11,7 +11,7 @@ use strict;
 use warnings;
 
 use Test::FailWarnings -allow_deps => 1;
-use Test::Git;
+use Test::Requires::Git;
 use Test::More;
 use Test::Type;
 
@@ -19,7 +19,7 @@ use App::GitHooks::Plugin::Test::PrintSTDERR;
 
 
 # Require git.
-has_git( '1.7.4.1' );
+test_requires_git( '1.7.4.1' );
 plan( tests => 2 );
 
 can_ok(

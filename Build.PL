@@ -50,6 +50,7 @@ my $builder = $class->new(
 		'Test::Exception'       => 0,
 		'Test::FailWarnings'    => 0,
 		'Test::Git'             => 0,
+		'Test::Requires::Git'   => 1.005,
 		'Test::More'            => 0,
 		'Test::Type'            => 1.002000,
 	},

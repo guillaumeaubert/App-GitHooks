@@ -6,13 +6,13 @@ use warnings;
 use App::GitHooks::Plugin::Test::PrintSTDERR;
 use Test::Exception;
 use Test::FailWarnings -allow_deps => 1;
-use Test::Git;
+use Test::Requires::Git;
 use Test::More;
 use Test::Type;
 
 
 # Require git.
-has_git( '1.7.4.1' );
+test_requires_git( '1.7.4.1' );
 plan( tests => 3 );
 
 can_ok(
