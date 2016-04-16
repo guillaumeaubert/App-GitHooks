@@ -3,51 +3,51 @@ require 5.010;
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-  'test' => {
-              'TESTS' => 't/*.t t/06-Constants/*.t t/90-githooks/*.t t/40-Plugin/*.t t/40-Plugin/PrintSTDERR/*.t t/40-Plugin/CustomReply/*.t t/13-Config/*.t t/45-Hook/*.t t/45-Hook/CommitMsg/*.t t/45-Hook/PreCommit/*.t t/45-Hook/PrepareCommitMsg/*.t t/17-CommitMessage/*.t t/05-Terminal/*.t t/14-Utils/*.t'
-            },
-  'PL_FILES' => {},
   'INSTALLDIRS' => 'site',
-  'NAME' => 'App::GitHooks',
+  'PREREQ_PM' => {
+                   'Class::Load' => 0,
+                   'Parallel::ForkManager' => 0,
+                   'Config::Tiny' => 0,
+                   'Data::Validate::Type' => 0,
+                   'Term::ReadKey' => 0,
+                   'Git::Repository' => 0,
+                   'Test::FailWarnings' => 0,
+                   'Capture::Tiny' => 0,
+                   'Module::Pluggable' => 0,
+                   'autodie' => 0,
+                   'Try::Tiny' => 0,
+                   'Term::ANSIColor' => 0,
+                   'Test::Compile' => '1.001',
+                   'Data::Dumper' => 0,
+                   'Storable' => 0,
+                   'Data::Section' => 0,
+                   'Text::Wrap' => 0,
+                   'File::Temp' => 0,
+                   'Test::Deep' => 0,
+                   'Cwd' => 0,
+                   'Test::Exception' => 0,
+                   'Readonly' => 0,
+                   'Path::Tiny' => 0,
+                   'File::Basename' => 0,
+                   'Test::Type' => '1.002',
+                   'File::Spec' => 0,
+                   'Scalar::Util' => 0,
+                   'Test::More' => 0,
+                   'Carp' => 0,
+                   'Getopt::Long' => 0,
+                   'Test::Requires::Git' => '1.005',
+                   'Term::Encoding' => 0,
+                   'Pod::Usage' => 0,
+                   'Test::Git' => 0
+                 },
+  'VERSION_FROM' => 'lib/App/GitHooks.pm',
   'EXE_FILES' => [
                    'bin/githooks'
                  ],
-  'VERSION_FROM' => 'lib/App/GitHooks.pm',
-  'PREREQ_PM' => {
-                   'Capture::Tiny' => 0,
-                   'Pod::Usage' => 0,
-                   'Storable' => 0,
-                   'autodie' => 0,
-                   'Test::Type' => '1.002',
-                   'Test::Deep' => 0,
-                   'Term::ReadKey' => 0,
-                   'Try::Tiny' => 0,
-                   'Getopt::Long' => 0,
-                   'Test::Git' => 0,
-                   'Test::Requires::Git' => 1.005,
-                   'Test::Exception' => 0,
-                   'Term::ANSIColor' => 0,
-                   'Test::FailWarnings' => 0,
-                   'Data::Dumper' => 0,
-                   'Test::More' => 0,
-                   'Term::Encoding' => 0,
-                   'File::Temp' => 0,
-                   'Scalar::Util' => 0,
-                   'Parallel::ForkManager' => 0,
-                   'File::Spec' => 0,
-                   'Data::Section' => 0,
-                   'Text::Wrap' => 0,
-                   'Data::Validate::Type' => 0,
-                   'Path::Tiny' => 0,
-                   'Module::Pluggable' => 0,
-                   'Class::Load' => 0,
-                   'Readonly' => 0,
-                   'Carp' => 0,
-                   'Git::Repository' => 0,
-                   'Test::Compile' => '1.001',
-                   'File::Basename' => 0,
-                   'Config::Tiny' => 0,
-                   'Cwd' => 0
-                 }
+  'PL_FILES' => {},
+  'test' => {
+              'TESTS' => 't/*.t t/45-Hook/*.t t/45-Hook/PreCommit/*.t t/45-Hook/PrepareCommitMsg/*.t t/45-Hook/CommitMsg/*.t t/17-CommitMessage/*.t t/14-Utils/*.t t/13-Config/*.t t/90-githooks/*.t t/05-Terminal/*.t t/40-Plugin/*.t t/40-Plugin/PrintSTDERR/*.t t/40-Plugin/CustomReply/*.t t/06-Constants/*.t'
+            },
+  'NAME' => 'App::GitHooks'
 )
 ;

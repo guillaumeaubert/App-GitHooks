@@ -13,6 +13,7 @@ build_requires:
   Test::FailWarnings: '0'
   Test::Git: '0'
   Test::More: '0'
+  Test::Requires::Git: '1.005'
   Test::Type: '1.002'
 configure_requires:
   Module::Build: '0'
