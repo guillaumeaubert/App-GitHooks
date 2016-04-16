@@ -17,7 +17,7 @@ use File::Temp;
 use Path::Tiny qw();
 use Test::Exception;
 use Test::Git;
-use Test::Requires::Git;
+use Test::Requires::Git -nocheck;
 use Test::More;
 
 # Internal dependencies.
