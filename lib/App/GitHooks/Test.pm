@@ -245,7 +245,7 @@ sub ok_setup_repository
 			# Create a temporary repository.
 			ok(
 				defined(
-					$repository = test_repository(
+					$repository = Test::Git::test_repository(
 						temp => [ CLEANUP => $cleanup_test_repository ],
 					)
 				),
@@ -558,7 +558,7 @@ sub test_hook
 		if $hook_name !~ /^[\w-]+$/;
 
 	# Bail out if Git isn't available.
-	test_requires_git( '1.7.4.1' );
+	Test::Requires::Git::test_requires_git( '1.7.4.1' );
 	plan( tests => scalar( @$tests ) );
 
 	foreach my $test ( @$tests )
