@@ -114,7 +114,7 @@ sub run
 		# otherwise finish and let git complete.
 		if ( $has_errors )
 		{
-			print "Press <Enter> to edit again the commit message or Ctrl-C to abort the commit.\n";
+			print "Press <Enter> to edit the commit message or Ctrl-C to abort the commit.\n";
 			if ( $app->get_terminal()->is_interactive() )
 			{
 				my $input = <STDIN>; ## no critic (InputOutput::ProhibitExplicitStdin)
