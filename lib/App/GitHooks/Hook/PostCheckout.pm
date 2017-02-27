@@ -1,7 +1,7 @@
 package App::GitHooks::Hook::PostCheckout;
 
 # IMPORTANT: if you need to create a custom run() subroutine in this package,
-# amend t/16-run-dash.t so that the test performed there is still relevant.
+# amend t/21-run-dash.t so that the test performed there is still relevant.
 
 use strict;
 use warnings;
