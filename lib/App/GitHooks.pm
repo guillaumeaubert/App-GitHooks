@@ -304,11 +304,15 @@ A C<.githooksrc> file in the home directory of the current user.
 The settings will then apply to all the repositories that have hooks set up.
 Note that if C<.githooksrc> file is defined at the root of a repository, that
 configuration file will take precedence over the one defined in the home
-directory of the current user (as it is presumably more specific). Auto-merge
-of options across multiple C<.githooksrc> files in an inheritance fashion is
-not currently supported.
+directory of the current user (as it is presumably more specific). 
 
 =back
+
+If the environment variable C<GITHOOKRC_MERGE> is set to a C<true> value
+and C<GITHOOKSRC_FORCE> is not defined, the system will
+merge the local and global F<.githooksrc> files. In this case,
+the global F<.githooksrc> is either the one defined by C<GITHOOKSRC>, or
+the one in the user's home directory.
 
 
 =head2 General configuration options
@@ -769,44 +773,47 @@ sub get_config
 {
 	my ( $self ) = @_;
 
-	if ( !defined( $self->{'config'} ) )
-	{
-		my $config_file;
-		my $config_source;
-		# For testing purposes, provide a way to enforce a specific .githooksrc
-		# file regardless of how anything else is set up on the machine.
-		if ( defined( $ENV{'GITHOOKSRC_FORCE'} ) && ( -e $ENV{'GITHOOKSRC_FORCE'} ) )
-		{
-			$config_source = 'GITHOOKSRC_FORCE environment variable';
-			$config_file = $ENV{'GITHOOKSRC_FORCE'};
-		}
-		# First, use repository-specific githooksrc files.
-		elsif ( -e '.githooksrc' )
-		{
-			$config_source = '.githooksrc at the root of the repository';
-			$config_file = '.githooksrc';
-		}
-		# Fall back on the GITHOOKSRC variable.
-		elsif ( defined( $ENV{'GITHOOKSRC'} ) && ( -e $ENV{'GITHOOKSRC'} ) )
-		{
-			$config_source = 'GITHOOKSRC environment variable';
-			$config_file = $ENV{'GITHOOKSRC'};
-		}
-		# Fall back on the home directory of the user.
-		elsif ( defined( $ENV{'HOME'} ) && ( -e $ENV{'HOME'} . '/.githooksrc' ) )
-		{
-			$config_source = '.githooksrc in the home directory';
-			$config_file = $ENV{'HOME'} . '/.githooksrc';
-		}
+	return $self->{'config'} ||= $self->_build_config;
+}
 
-		$self->{'config'} = App::GitHooks::Config->new(
-			defined( $config_file )
-				? ( file => $config_file, source => $config_source )
-				: (),
-		);
-	}
+sub _build_config {
+    my $self = shift;
+   
+    # For testing purposes, provide a way to enforce a specific .githooksrc
+    # file regardless of how anything else is set up on the machine.
+    return App::GitHooks::Config->new(
+        source => 'GITHOOKSRC_FORCE environment variable',
+        file   => $ENV{'GITHOOKSRC_FORCE'},
+    ) if defined( $ENV{'GITHOOKSRC_FORCE'} ) and -e $ENV{'GITHOOKSRC_FORCE'};
 
-	return $self->{'config'};
+    my $local_config;
+
+    $local_config = App::GitHooks::Config->new(
+        source => '.githooksrc at the root of the repository',
+        file   => '.githooksrc',
+    ) if -e '.githooksrc';
+
+    # we have a config and no need to merge? We're done!
+    return $local_config if $local_config and not $ENV{GITHOOKRC_MERGE};
+
+    # for the global config, first check GITHOOKSRC
+    my $global_config = App::GitHooks::Config->new(
+        defined( $ENV{'GITHOOKSRC'} ) && ( -e $ENV{'GITHOOKSRC'} )  
+            ? ( 
+                source => 'GITHOOKSRC environment variable',
+                file   => $ENV{'GITHOOKSRC'},
+            )
+      : defined( $ENV{'HOME'} ) && ( -e $ENV{'HOME'} . '/.githooksrc' ) 
+            ? ( 
+                source => '.githooksrc in the home directory',
+                file   => $ENV{'HOME'} . '/.githooksrc',
+            )
+      : ()
+    );
+
+    $global_config->merge( $local_config ) if $ENV{GITHOOKRC_MERGE};
+
+    return $global_config;
 }
 
 
