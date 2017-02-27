@@ -397,6 +397,32 @@ failed.
 =back
 
 
+=head1 ENVIRONMENT VARIABLES
+
+=head2 GITHOOKS_SKIP
+
+Comma separated list of hooks to skip. A warning is issued for each hook that
+would otherwise be triggered.
+
+	GITHOOKS_SKIP=pre-commit,update
+
+=head2 GITHOOKS_DISABLE
+
+Works similarly to C<GITHOOKS_SKIP>, but it skips all the possible hooks. Set
+it to a true value, e.g. 1.
+
+	GITHOOKS_DISABLE=1
+
+=head2 GITHOOKSRC
+
+Contains path to a custom configuration file, see "Configuration file
+locations" above.
+
+=head2 GITHOOKSRC_FORCE
+
+Similar to C<GITHOOKSRC> but with a higher priority. See "Configuration file
+locations" above.
+
 =head1 FUNCTIONS
 
 =head2 run()
@@ -451,6 +477,11 @@ sub run
 			if !defined( $name );
 		croak "Invalid hook name $name"
 			if scalar( grep { $_ eq $name } @$HOOK_NAMES ) == 0;
+
+		if (my $env_var = _should_skip( $name )) {
+			carp "Hook $name skipped because of $env_var";
+			return $HOOK_EXIT_SUCCESS;
+		}
 
 		# Validate arguments.
 		croak 'Unknown argument(s): ' . join( ', ', keys %args )
@@ -1123,6 +1154,30 @@ sub _to_camelcase
 	$name = ucfirst( $name );
 
 	return $name;
+}
+
+
+=head2 _should_skip()
+
+See the environment variables GITHOOKS_SKIP and GITHOOKS_DISABLE above. This
+function returns the variable name that would be the reason to skip the given
+hook, or nothing.
+
+	return if _should_skip( $name );
+
+=cut
+
+sub _should_skip
+{
+	my ( $name ) = @_;
+	return unless exists $ENV{'GITHOOKS_SKIP'}
+	           || exists $ENV{'GITHOOKS_DISABLE'};
+
+	return 'GITHOOKS_DISABLE' if $ENV{'GITHOOKS_DISABLE'};
+
+	my %skip;
+	@skip{ split /,/, $ENV{'GITHOOKS_SKIP'} } = ();
+	return exists $skip{ $name } && 'GITHOOKS_SKIP';
 }
 
 
