@@ -362,6 +362,11 @@ they will be ignored.
 
 	force_plugins = App::GitHooks::Plugin::ValidatePODFormat, App::GitHooks::Plugin::RequireCommitMessage
 
+=item * mask_plugins
+
+A comma-separated list of plugins that should not be loaded, 
+even if given by C<force_plugins>.
+
 =back
 
 
@@ -728,6 +733,12 @@ sub get_all_plugins
 		}
 	}
 	#print STDERR Dumper( \@plugins );
+
+    # remove masked plugins from the list
+    for my $masked ( map { /^App/ ? $_ : "App::GitHooks::Plugin::$_" } 
+                  split /\s+,\s+/, $config->get('_','mask_plugins') || '' ) {
+        @plugins = grep { $_ ne $masked } @plugins;
+    }
 
 	# Parse each plugin to find out which hook(s) they apply to.
 	my $all_plugins = {};
