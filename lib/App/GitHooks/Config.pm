@@ -71,11 +71,20 @@ sub new
 
 	bless( $self, $class );
 
+    $self->_explicit_plugins;
+
 	# Store meta-information for future reference.
 	$self->{'__source'} = $source;
 	$self->{'__path'} = $file;
 
 	return $self;
+}
+
+sub _explicit_plugins {
+    my $self = shift;
+    
+    $self->{'_'}{force_plugins} = join ',', grep { $_ ne '_' } keys %$self
+        if $self->{'_'}{explicit_plugins};
 }
 
 
