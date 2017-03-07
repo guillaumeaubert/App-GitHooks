@@ -17,44 +17,44 @@ plan(tests => 6);
 test_requires_git( '1.7.4.1' );
 
 App::GitHooks::Test::ok_reset_githooksrc(
-    content => ''
+	content => ''
 );
 
 lives_ok(
-    sub {
-        my $app = App::GitHooks->new(
-            arguments => [],
-            name      => 'commit-msg'
-        );
-    },
-    'config is retrieved when no min_app_githooks_version is specified'
+	sub {
+		my $app = App::GitHooks->new(
+			arguments => [],
+			name      => 'commit-msg'
+		);
+	},
+	'config is retrieved when no min_app_githooks_version is specified'
 );
 
 App::GitHooks::Test::ok_reset_githooksrc(
-    content => "min_app_githooks_version = 10000000\n"
+	content => "min_app_githooks_version = 10000000\n"
 );
 
 throws_ok(
-    sub {
-        my $app = App::GitHooks->new(
-            arguments => [],
-            name      => 'commit-msg'
-        );
-    },
-    qr/Requires at least App::Githooks version 10000000/i,
-    'throws expected error when min_app_githooks_version is greater than version'
+	sub {
+		my $app = App::GitHooks->new(
+			arguments => [],
+			name      => 'commit-msg'
+		);
+	},
+	qr/Requires at least App::Githooks version 10000000/i,
+	'throws expected error when min_app_githooks_version is greater than version'
 );
 
 App::GitHooks::Test::ok_reset_githooksrc(
-    content => "min_app_githooks_version = 1.0.0\n"
+	content => "min_app_githooks_version = 1.0.0\n"
 );
 
 lives_ok(
-    sub {
-        my $app = App::GitHooks->new(
-            arguments => [],
-            name      => 'commit-msg',
-        );
-    },
-    'config is retrieved when min_app_githooks_version is less than version'
+	sub {
+		my $app = App::GitHooks->new(
+			arguments => [],
+			name      => 'commit-msg',
+		);
+	},
+	'config is retrieved when min_app_githooks_version is less than version'
 );

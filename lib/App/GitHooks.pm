@@ -364,9 +364,9 @@ they will be ignored.
 
 =item * min_app_githooks_version
 
-Specify the minimum version of App::GitHooks
+Specify the minimum version of App::GitHooks.
 
-    min_app_githooks_version = 1.8.0
+	min_app_githooks_version = 1.8.0
 
 =back
 
@@ -428,6 +428,7 @@ locations" above.
 
 Similar to C<GITHOOKSRC> but with a higher priority. See "Configuration file
 locations" above.
+
 
 =head1 FUNCTIONS
 
@@ -845,8 +846,8 @@ sub get_config
 
 	# Enforce the specifying of min version of App::GitHooks
 	my $min_version = $self->{'config'}->get('_','min_app_githooks_version');
-	    croak "Requires at least App::Githooks version $min_version, you have version $VERSION"
-	    if $min_version && $min_version gt $VERSION;
+	croak "Requires at least App::Githooks version $min_version, you have version $VERSION"
+		if $min_version && $min_version gt $VERSION;
 
 	return $self->{'config'};
 }
