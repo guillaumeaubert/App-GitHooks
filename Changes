@@ -1,5 +1,12 @@
 Revision history for App-GitHooks
 
+v1.9.0  2017-03-19
+        - Added min_app_githooks_version config option to allow enforcing a
+          minimum version of App::GitHooks against a repository (GH-28). Thank
+          you, Lisa Hare!
+        - Added GITHOOKS_SKIP and GITHOOKS_DISABLE environment variables to
+          hard-skip specific hooks (GH-6). Thank you, E. Choroba!
+
 v1.8.0  2016-05-21
         - Switched to Test::Requires::Git instead of the now obsolete
           Test::Git::has_git(). Thank you, Philippe Bruhat!

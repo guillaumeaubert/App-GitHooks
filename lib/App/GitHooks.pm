@@ -37,11 +37,11 @@ App::GitHooks - Extensible plugins system for git hooks.
 
 =head1 VERSION
 
-Version 1.8.0
+Version 1.9.0
 
 =cut
 
-our $VERSION = '1.8.0';
+our $VERSION = '1.9.0';
 
 
 =head1 DESCRIPTION
@@ -366,7 +366,7 @@ they will be ignored.
 
 Specify the minimum version of App::GitHooks.
 
-	min_app_githooks_version = 1.8.0
+	min_app_githooks_version = 1.9.0
 
 =back
 

@@ -23,11 +23,11 @@ App::GitHooks::Hook::PreCommit - Handler for pre-commit hook.
 
 =head1 VERSION
 
-Version 1.8.0
+Version 1.9.0
 
 =cut
 
-our $VERSION = '1.8.0';
+our $VERSION = '1.9.0';
 
 
 =head1 METHODS
