@@ -157,7 +157,7 @@ You can also look for information at:
 LICENSE AND COPYRIGHT
 ---------------------
 
-Copyright (C) 2013-2016 Guillaume Aubert.
+Copyright (C) 2013-2017 Guillaume Aubert.
 
 This code is free software; you can redistribute it and/or modify it under the
 same terms as Perl 5 itself.
