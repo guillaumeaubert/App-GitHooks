@@ -78,6 +78,7 @@ t/11-clone.t
 t/12-force_non_interactive.t
 t/13-Config/00-load.t
 t/13-Config/20-get_regex.t
+t/13-Config/30-min_app_githooks_version.t
 t/14-Utils/00-load.t
 t/14-Utils/10-get_project_prefixes.t
 t/14-Utils/12-get_project_prefix_regex.t
@@ -96,6 +97,7 @@ t/17-CommitMessage/35-has_changed.t
 t/20-run.t
 t/21-run-dash.t
 t/22-run-die.t
+t/24-githooks-skip.t
 t/40-Plugin/00-load.t
 t/40-Plugin/03-get_file_check_description.t
 t/40-Plugin/20-get_name.t
